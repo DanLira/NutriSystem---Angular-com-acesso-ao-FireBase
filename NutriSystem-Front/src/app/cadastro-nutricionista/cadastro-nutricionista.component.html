@@ -1,0 +1,55 @@
+<section>
+    <div class="container-fluid">
+        <div class="col-12">
+            <mat-card class="mat-card-padrao">
+                <div class="row">
+                    <div class="col-12">
+                        <mat-card-title>Cadastro de Nutricionista </mat-card-title>
+                        <form [formGroup]="formsRegister" class="row">
+                            <mat-form-field class="col-5" appearance="outline">
+                                <mat-label>Nome</mat-label>
+                                <input matInput placeholder="Nome" required formControlName="nome"
+                                    value={{formsRegister.value.nome}}>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>Sexo</mat-label>
+                                <mat-select matNativeControl required formControlName="sexo">
+                                    <mat-option>Selecione</mat-option>
+                                    <mat-option value="M">Masculino</mat-option>
+                                    <mat-option value="F">Feminino</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-xs-6 col-md-5" appearance="outline">
+                                <mat-label>Digite seu CRN (Ele será também seu login)</mat-label>
+                                <input matInput placeholder="CRN" required formControlName="crn" value={{formsRegister.value.crn}}>
+                            </mat-form-field>
+
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Email" required
+                                    pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" formControlName="email"
+                                    value={{formsRegister.value.email}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-xs-6 col-md-4" appearance="outline">
+                                <input matInput placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                                </button>
+                              </mat-form-field>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
+                        <button mat-raised-button class="btn col-12" (click)="cancelar()">Cancelar</button>
+                    </div>
+                    <div class="col-sm-12 col-md-1  mt-4">
+                        <button mat-raised-button class="btn col-12" (click)="saveNutricionista()">Salvar</button>
+                    </div>
+                </div>
+            </mat-card>    
+        </div>
+    </div>
+</section>

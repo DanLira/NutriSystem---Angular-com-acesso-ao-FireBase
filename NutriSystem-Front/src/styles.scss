@@ -1,0 +1,189 @@
+
+
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/purple-green.css';
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~ngx-toastr/toastr';
+
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$gsc-app-primary: mat-palette($mat-purple, 700);
+$gsc-app-accent: mat-palette($mat-cyan, 600);
+
+// The warn palette is optional (defaults to red).
+$gsc-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$gsc-app-theme: mat-light-theme($gsc-app-primary, $gsc-app-accent, $gsc-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($gsc-app-theme);
+ 
+
+//Standard size
+$break-small: 540px;
+$break-medium: 720px;
+$break-large: 960px;
+$break-exlarge: 1140px;
+
+
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    background-color: #009f9e !important;
+}
+.mat-sidenav {
+  width: 280px;
+  padding:15px;
+}
+
+.header-toolbar{
+  background-color: #00695C;
+  color:#fff;
+}
+
+.mat-sidenav{
+  background-color: #00695C;
+  color:#fff;
+}
+
+.mat-drawer { 
+  background-color: #00695C;
+  color:#fff;
+}
+
+.btn-nav{
+  background-color: #00695C !important;
+  color:#fff;
+}
+.btn-nav :hover{
+  background-color: #009f9e !important;
+  color:#fff;
+}
+
+.main-content {
+  padding:20px;
+}
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.font-header {
+  font-size: 14px
+}
+
+.icons-margim {
+  margin-left: 15px
+}
+
+.center-spinner {
+  margin-left: 45%; 
+  margin-top: 20%
+}
+
+.has-centered-text {
+  text-align: center;
+  background-color: #009f9e;
+  font-weight: 600;
+  color: white;
+  font-size: 24px;
+}
+
+.mat-card-space{
+  margin-bottom: 40px;
+}
+
+.mat-card-padrao{
+  height: auto; 
+  margin-top: -5px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  .mat-icon{
+    color: #009f9e;
+  }
+}
+.expansion-list-todo {
+  border: solid 1px #ccc;
+  min-height: 243px;
+  max-height: 243px;
+  background: #fafafa;
+  border-radius: 4px;
+  overflow: auto;
+  display: block;
+  border-right: #009f9e solid 3px;
+  
+  ::before{
+    position: absolute;
+    top: 225px;
+    right: 6px;
+    display: inline-block;
+    border-top: 30px solid transparent;
+    border-left: 10px solid #00695C;
+    border-right: 0px solid #009f9e;
+    border-bottom: 30px solid transparent;
+    content: " ";
+    z-index: 9;
+  }
+}
+.expansion-list-done {
+  border: dashed 1px;
+  min-height: 327px;
+  max-height: 327px;
+  background: #fafafa;
+  border-radius: 4px;
+  overflow: auto;
+  display: block;
+  margin-top: 13px;
+  border-left: #00695C solid 3px;
+  
+  ::before{
+    position: absolute;
+    top: 225px;
+    left: 6px;
+    display: inline-block;
+    border-top: 30px solid transparent;
+    border-left: 0px solid #00695C;
+    border-right: 10px solid #009f9e;
+    border-bottom: 30px solid transparent;
+    content: " ";
+    z-index: 9;
+  }
+}
+.expansion-panel{
+  background-color: #F2F2F2;
+}
+.expansion-panel-data{
+  font-size: 10pt;
+}
+ 
+.expansion-panel-title{
+  font-weight: bolder;
+}
+table {
+  width: 100%;
+}
+
+.btn{
+  color:#fff;
+  background: #009f9e;
+  background: -webkit-linear-gradient(top, #009f9e, #00695C, #009f9e, #00695C);
+}
+.btn :hover{
+  color: #fff;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

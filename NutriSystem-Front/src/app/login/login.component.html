@@ -1,0 +1,57 @@
+<!-- <div class="limiter">
+    <div class="div-image-left-side">
+        <div class="img-color-purple" style="background-image: url('assets/frutasBackgroud.jpg');"></div>
+        <div class="right-side" style="padding-left: 20px;">
+            <mat-card class="card-login">
+                <form [formGroup]="loginForm" class="form-login">
+                    <span class="form-login-title">NutriSystem</span>
+                    <span class="font-weight-light" style="margin-top: 10px;"> Sistema de Marcação de Consultas </span>
+                    <mat-form-field class="form-login-login col-xs-12 col-md-12" appearance="outline">
+                        <mat-label>Login</mat-label>
+                    <input matInput placeholder="Login" formControlName="login" required>
+                  </mat-form-field>
+                  <mat-error *ngIf="isFieldInvalid('login')"> Por favor preencha o campo login </mat-error>
+                  <mat-form-field class="col-xs-12 col-md-12" appearance="outline">
+                    <input matInput placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                 <mat-error *ngIf="isFieldInvalid('login')"> Por favor preencha o campo senha </mat-error>
+                </form>
+            </mat-card>
+            <div class="container-form-btn">
+                <div class="row">
+
+                    <div class="wrap-form-btn">
+                        <div class="form-bgbtn col-xs-6"></div>
+                        <button class="form-btn" (click)="fazerLogin()">
+                            Entrar
+                        </button>
+                    </div>
+                    <div class="wrap-form-link">
+                            <a routerLink="/cadastroNutricionista" routerLinkActive="active"> Quero me cadastrar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>NutriSystem<span>Sistema de Marcação de Consultas</span></div>
+		</div>
+        <br>
+        <form [formGroup]="loginForm" class="form-login">
+		<div class="login">
+				<input type="text" placeholder="Login" formControlName="crn" required><br>
+				<input type="password" placeholder="Senha" formControlName="senha" required><br>
+                <input type="button" value="Entrar" (click)="fazerLogin()">
+                <div class="wrap-form-link">
+                    <a routerLink="/cadastroNutricionista" routerLinkActive="active"> Quero me cadastrar</a>
+                </div>
+        </div>
+    </form>
+    

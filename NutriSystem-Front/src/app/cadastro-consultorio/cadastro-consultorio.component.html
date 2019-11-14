@@ -1,0 +1,105 @@
+<section>
+    <div class="container-fluid">
+        <div class="col-12">
+            <mat-card class="mat-card-padrao">
+                <div class="row">
+                    <div class="col-12">
+                        <mat-card-title>Cadastro de Consultorio
+                        </mat-card-title>
+                        <form [formGroup]="formsRegister" class="row">
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Nome Fantasia</mat-label>
+                                <input matInput required formControlName="nomeFantasia" value={{formsRegister.value.nomeFantasia}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Razão Social</mat-label>
+                                <input matInput required formControlName="razaoSocial" value={{formsRegister.value.razaoSocial}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>CNPJ</mat-label>
+                                <input matInput required formControlName="cnpj" value={{formsRegister.value.cnpj}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-4" appearance="outline">
+                                <mat-label>Endereço</mat-label>
+                                <input matInput required formControlName="endereco" value={{formsRegister.value.endereco}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>Número</mat-label>
+                                <input matInput required formControlName="numero" value={{formsRegister.value.numero}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Bairro</mat-label>
+                                <input matInput required formControlName="bairro" value={{formsRegister.value.bairro}}> 
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>CEP</mat-label>
+                                <input matInput required formControlName="cep" value={{formsRegister.value.cep}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Cidade</mat-label>
+                                <input matInput required formControlName="cidade" value={{formsRegister.value.cidade}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-1" appearance="outline">
+                                <mat-label>UF</mat-label>
+                                <input matInput required formControlName="uf" value={{formsRegister.value.uf}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>País</mat-label>
+                                <input matInput formControlName="pais" value={{formsRegister.value.pais}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>E-mail</mat-label>
+                                <input matInput required formControlName="email" value={{formsRegister.value.email}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Telefone</mat-label>
+                                <input matInput formControlName="telefone" value={{formsRegister.value.telefone}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Celular</mat-label>
+                                <input matInput required formControlName="celular" value={{formsRegister.value.celular}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Whatsapp</mat-label>
+                                <input matInput formControlName="whatsapp" value={{formsRegister.value.whatsapp}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Instagram</mat-label>
+                                <input matInput formControlName="instagram" value={{formsRegister.value.instagram}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-3" appearance="outline">
+                                <mat-label>Facebook</mat-label>
+                                <input matInput formControlName="facebook" value={{formsRegister.value.facebook}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>Hora Abertura</mat-label>
+                                <input matInput formControlName="horaAbertura" value={{formsRegister.value.horaAbertura}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-2" appearance="outline">
+                                <mat-label>Hora Fechamento</mat-label>
+                                <input matInput formControlName="horaFechamento" value={{formsRegister.value.horaFechamento}}>
+                            </mat-form-field>
+                            <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                                    <mat-select required formControlName="idNutricionista" value={{formsRegister.value.idNutricionista}}>
+                                      <mat-option>Selecione</mat-option>
+                                      <mat-option [value]="item.key" *ngFor="let item of nutricionistaList">{{ item.nome }}
+                                      </mat-option>
+                                    </mat-select>
+                                    <mat-label>Selecione o Nutricionista</mat-label>
+                                  </mat-form-field>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
+                        <button mat-raised-button class="btn col-12" (click)="clearConsultorio()">Cancelar</button>
+                    </div>
+                    <div class="col-sm-12 col-md-1  mt-4">
+                        <button mat-raised-button class="btn col-12"
+                            (click)="saveConsultorio()">Salvar</button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,120 @@
+import { Paciente } from './../model/paciente.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { PacienteService } from './paciente.service';
+import { ToastrService } from 'ngx-toastr';
+import { PacienteFireBaseService } from './paciente-fire-base.service';
+
+@Component({
+  selector: 'app-cadastro-paciente',
+  templateUrl: './cadastro-paciente.component.html',
+  styleUrls: ['./cadastro-paciente.component.scss']
+})
+export class CadastroPacienteComponent implements OnInit {
+  paciente: Paciente[];
+  key: string = '';
+  formsRegister: FormGroup;
+  filterFormPaciente: FormGroup;
+  pacienteList: Paciente[];
+  displayedColumns: string[] = ['nome', 'email', 'cpf', 'action'];
+  dataSource = new MatTableDataSource<Paciente>();
+  todoDataSource: any[];
+  @ViewChild('MatPaginator') MatPaginator: MatPaginator;
+
+  constructor(private readonly _formBuilder: FormBuilder,
+              private readonly _pacienteService: PacienteService,
+              private readonly _pacienteFireBaseService: PacienteFireBaseService,
+              private readonly toastr: ToastrService) { }
+
+  ngOnInit() {
+    this.dataSource.paginator = this.MatPaginator;
+    this.formsRegister = this._formBuilder.group({
+    key: [''],
+    nome: [''],
+    cpf: [''],
+    sexo: [''],
+    email: [''],
+    dataNascimento: [''],
+    celular: [''],
+    login: [''],
+    senha: ['']
+
+    });
+    this._pacienteFireBaseService.getAllPaciente().subscribe((pacientes: Paciente[]) => {
+      this.pacienteList = (!!pacientes) ? pacientes : [];
+      this.dataSource.data = [...this.pacienteList];
+     });
+
+
+    this.filterFormPaciente = this._formBuilder.group({
+        nomeFilterCtrl: [''],
+        emailFilterCtrl: [''],
+        cpfFilterCtrl: ['']
+        });
+    }
+    savePacienteFire() {
+      const paciente: Paciente = {
+        nome: this.formsRegister.get('nome').value,
+        email: this.formsRegister.get('email').value,
+        sexo: this.formsRegister.get('sexo').value,
+        cpf: this.formsRegister.get('cpf').value,
+        celular: this.formsRegister.get('celular').value,
+        dataNascimento: (this.formsRegister.get('dataNascimento').value).toLocaleDateString('pt-BR'),
+        login: this.formsRegister.get('login').value,
+        senha: this.formsRegister.get('senha').value,
+      };
+      if (this.formsRegister.value.key) {
+        this._pacienteFireBaseService.updatePaciente(paciente, this.formsRegister.value.key);
+        this.formsRegister.reset();
+        this.toastr.success('Paciente atualizado com sucesso!', 'Editar');
+      } else {
+        this._pacienteFireBaseService.createPaciente(paciente);
+        this.formsRegister.reset();
+        this.toastr.success('Paciente salvo com sucesso!', 'Salvar');
+
+      }
+    }
+    getRowTablePaciente(value: any): void {
+      this.formsRegister.get('key').setValue(value.key);
+      this.formsRegister.get('nome').setValue(value.nome);
+      this.formsRegister.get('email').setValue(value.email);
+      this.formsRegister.get('sexo').setValue(value.sexo);
+      this.formsRegister.get('cpf').setValue(value.cpf);
+      this.formsRegister.get('dataNascimento').setValue(value.dataNascimento);
+      this.formsRegister.get('celular').setValue(value.celular);
+      this.formsRegister.get('login').setValue(value.login);
+      this.formsRegister.get('senha').setValue(value.senha);
+      }
+    clearPaciente(): void {
+      this.dataSource.data = this.pacienteList;
+      this.formsRegister.value.key = null;
+      this.formsRegister.reset();
+      this.toastr.info('Campos limpos com sucesso!', 'Limpar');
+    }
+  deletePaciente(key: string): void {
+    this._pacienteFireBaseService.deletePaciente(key);
+    this.dataSource.data = this.pacienteList;
+    this.toastr.success('Paciente deletado com sucesso!', 'Deletar');
+  }
+  filterTabelaPaciente(): void {
+    let filteredTable: Paciente[] = this.pacienteList;
+    if (!this.filterFormPaciente.value.nomeFilterCtrl) {
+      this.dataSource.data = this.pacienteList;
+    }
+    if (this.filterFormPaciente.value.nomeFilterCtrl) {
+      filteredTable = filteredTable.filter
+      ( x =>
+        x.nome ? x.nome.toUpperCase().includes(this.filterFormPaciente.value.nomeFilterCtrl.toUpperCase()) : null
+      );
+     }
+    if (this.filterFormPaciente.value.cpfFilterCtrl) {
+        filteredTable = filteredTable.filter
+        ( x =>
+          x.cpf ? x.cpf.toUpperCase().includes(this.filterFormPaciente.value.cpfFilterCtrl.toUpperCase()) : null
+        );
+    }
+    this.dataSource.data = filteredTable;
+  }
+
+  }

@@ -1,0 +1,76 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" #sidenav position="right" mode="over" [fixedTopGap]="60" [fixedInViewport]="true">
+      <div class="row remove-negative-margin">
+        <div class="static-sidenav col-5">
+          <div class="btn-nav">
+            <mat-icon class="sub-menu-icon home">home</mat-icon>
+            <div class="size-icon-sidenav">Home</div>
+          </div>
+  
+        </div>
+        <div class="col-7 margin-left-details-menu">
+          <div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">account_circle</mat-icon>
+              <div class="sub-menu-title">Perfil</div>
+            </div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">event_available</mat-icon>
+              <div class="sub-menu-title">Consultas</div>
+            </div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">contacts</mat-icon>
+              <div class="sub-menu-title">Pacientes</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color">Meus Pacientes</div>
+              <div class="sub-menu-items-description item-color" routerLink="/cadastroPaciente" routerLinkActive="active">
+                Novo Paciente</div>
+            </div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">event_note</mat-icon>
+              <div class="sub-menu-title">Marcar Consulta</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" routerLink="/novaConsulta" routerLinkActive="active">
+                Nova Consulta</div>
+            </div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">store_mall_directory</mat-icon>
+              <div class="sub-menu-title">Consultório</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" routerLink="/cadastroConsultorio"
+                routerLinkActive="active">Novo Consultório</div>
+            </div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">room_service</mat-icon>
+              <div class="sub-menu-title">Alimentos</div>
+  
+            </div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">restaurant_menu</mat-icon>
+              <div class="sub-menu-title">Receitas</div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content style="background: #eeeeee">
+      <mat-toolbar class="header-toolbar" [hidden]="hiddenMenu" *ngIf="isLoggedIn$ | async as isLoggedIn">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="font-header">NutriSistem</div>
+        <span class="toolbar-spacer"></span>
+        <mat-icon class="icons-margim">work</mat-icon>
+        <mat-icon class="icons-margim">notifications_active</mat-icon>
+        <mat-icon style="margin-right: 15px" class="icons-margim" (click)="onLogout()" *ngIf="isLoggedIn">input</mat-icon>
+      </mat-toolbar>
+      <div class="wrapper-sub-header" [hidden]="hiddenMenu">
+      </div>
+      <router-outlet></router-outlet>
+  
+    </mat-sidenav-content>
+  </mat-sidenav-container>
