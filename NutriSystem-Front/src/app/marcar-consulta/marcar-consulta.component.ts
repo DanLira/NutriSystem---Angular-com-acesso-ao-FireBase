@@ -31,7 +31,7 @@ export class MarcarConsultaComponent implements OnInit {
   dataSourceNutricionista = new MatTableDataSource<Nutricionista>();
   displayedColumns: string[] = ['dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
-  todoDataSource: any[];
+
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   constructor(private readonly _formBuilder: FormBuilder,
@@ -107,9 +107,17 @@ export class MarcarConsultaComponent implements OnInit {
                   this.formsRegister.reset();
                   this.toastr.success('Consulta atualizada com sucesso!', 'Editar');
                 } else {
-                  this._marcarConsultaService.createConsulta(consulta);
-                  this.formsRegister.reset();
-                  this.toastr.success('Consulta marcada com sucesso!', 'Salvar');
+                  debugger;
+                  if (this.consultaList.filter(x => x.dataConsulta === this.formsRegister.get('dataConsulta').value).length <= 0) {
+                    if (this.consultaList.filter(x => x.horaConsulta === this.formsRegister.get('horaConsulta').value).length <= 0) {
+
+                    this._marcarConsultaService.createConsulta(consulta);
+                    this.formsRegister.reset();
+                    this.toastr.success('Consulta marcada com sucesso!', 'Salvar');
+                    }
+                  } else {
+                    this.toastr.warning('Este horário não estar disponivel!', '');
+                  }
                 }
 
     }
@@ -146,7 +154,7 @@ export class MarcarConsultaComponent implements OnInit {
     if (this.filterFormConsulta.value.dataConsultaFilterCtrl) {
       filteredTable = filteredTable.filter
       ( x =>
-        x.dataConsulta ? x.dataConsulta.toUpperCase().includes(this.filterFormConsulta.value.dataConsultaFilterCtrl.toUpperCase()) : null
+        x.dataConsulta ? x.dataConsulta.includes(this.filterFormConsulta.value.dataConsultaFilterCtrl.toLocaleDateString('pt-BR')) : null
       );
      }
     if (this.filterFormConsulta.value.statusConsultaFilterCtrl) {

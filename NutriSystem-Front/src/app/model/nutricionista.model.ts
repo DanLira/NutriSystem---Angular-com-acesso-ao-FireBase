@@ -10,4 +10,7 @@ export interface Nutricionista {
     totalAvaliacao?: number;
     tipoAtendimento?: boolean;
     idNutricionista?: string;
+    token?: string;
+    role?: string;
+    expires?: string;
   }

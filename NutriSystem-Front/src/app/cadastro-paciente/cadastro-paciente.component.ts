@@ -81,7 +81,7 @@ export class CadastroPacienteComponent implements OnInit {
       this.formsRegister.get('email').setValue(value.email);
       this.formsRegister.get('sexo').setValue(value.sexo);
       this.formsRegister.get('cpf').setValue(value.cpf);
-      this.formsRegister.get('dataNascimento').setValue(value.dataNascimento);
+      this.formsRegister.get('dataNascimento').setValue(new Date (this.formatDate(value.dataNascimento)));
       this.formsRegister.get('celular').setValue(value.celular);
       this.formsRegister.get('login').setValue(value.login);
       this.formsRegister.get('senha').setValue(value.senha);
@@ -115,6 +115,11 @@ export class CadastroPacienteComponent implements OnInit {
         );
     }
     this.dataSource.data = filteredTable;
+  }
+
+  formatDate(newDate): Date {
+    const split = newDate.split('/');
+    return new Date(split[1] + '/' + split[0] + '/' + split[2]);
   }
 
   }

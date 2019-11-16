@@ -50,7 +50,7 @@
 				<input type="password" placeholder="Senha" formControlName="senha" required><br>
                 <input type="button" value="Entrar" (click)="fazerLogin()">
                 <div class="wrap-form-link">
-                    <a routerLink="/cadastroNutricionista" routerLinkActive="active"> Quero me cadastrar</a>
+                    <a (click)="cadastrarNutricionista()"> Quero me cadastrar</a>
                 </div>
         </div>
     </form>

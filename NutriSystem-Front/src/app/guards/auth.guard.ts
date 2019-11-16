@@ -31,4 +31,26 @@ export class AuthGuard implements CanActivate {
           return true;
         }));
   }
+
+
+  ///////////////////////////////////
+
+  // canActivate(
+  //   route: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot): Observable<boolean> | boolean {
+
+  //   console.log("VERIFY");
+  //   console.log(localStorage['token']);
+
+  //   if (localStorage['token'] === undefined) {
+  //       this.router.navigate(['/login']);
+  //   }
+
+  //   if (localStorage['token'] !== 'null') {
+  //       return true;
+  //   } else {
+  //       this.router.navigate(['/login']);
+  //   }
+
+
 }

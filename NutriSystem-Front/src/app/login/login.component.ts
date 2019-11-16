@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { NutricionistaModalComponent } from '../cadastro-nutricionista/nutricionista-modal/nutricionista-modal.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -39,5 +42,18 @@ export class LoginComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
   }
+
+  // fazerLogin(email, senha) {
+  //   this.authService.login(email, senha);
+  // }
+
+  cadastrarNutricionista(): void {
+     this.dialog.open(NutricionistaModalComponent, {
+      height: '80%',
+      width: '50%',
+    });
+  }
+
+
 
 }

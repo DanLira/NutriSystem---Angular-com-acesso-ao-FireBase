@@ -33,6 +33,10 @@ import { HomeComponent } from './home/home.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthService } from './guards/auth.service';
+import { NutricionistaModalComponent } from './cadastro-nutricionista/nutricionista-modal/nutricionista-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     CadastroPacienteComponent,
     CadastroConsultorioComponent,
     MarcarConsultaComponent,
-    HomeComponent
+    HomeComponent,
+    NutricionistaModalComponent
   ],
   imports: [
     HttpClientModule,
@@ -71,11 +76,14 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule, // for database
+    AngularFireAuthModule,
+    MatDialogModule
   ],
   providers: [MatDatepickerModule,
     {provide: MAT_DATE_LOCALE, useValue: 'br-PT'},
-    AuthGuard
+    AuthGuard, AuthService
   ],
+  entryComponents: [NutricionistaModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
