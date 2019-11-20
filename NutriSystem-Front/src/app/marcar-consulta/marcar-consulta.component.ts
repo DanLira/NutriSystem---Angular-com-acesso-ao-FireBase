@@ -107,14 +107,10 @@ export class MarcarConsultaComponent implements OnInit {
                   this.formsRegister.reset();
                   this.toastr.success('Consulta atualizada com sucesso!', 'Editar');
                 } else {
-                  debugger;
-                  if (this.consultaList.filter(x => x.dataConsulta === this.formsRegister.get('dataConsulta').value).length <= 0) {
-                    if (this.consultaList.filter(x => x.horaConsulta === this.formsRegister.get('horaConsulta').value).length <= 0) {
-
+                  if (this.verificaDisponibilidade()) {
                     this._marcarConsultaService.createConsulta(consulta);
                     this.formsRegister.reset();
                     this.toastr.success('Consulta marcada com sucesso!', 'Salvar');
-                    }
                   } else {
                     this.toastr.warning('Este horário não estar disponivel!', '');
                   }
@@ -122,6 +118,14 @@ export class MarcarConsultaComponent implements OnInit {
 
     }
 
+      verificaDisponibilidade(): boolean {
+        debugger;
+        if (this.consultaList.map(x => x.dataConsulta ===
+          (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR'))
+           && this.consultaList.map(x => x.horaConsulta === this.formsRegister.get('horaConsulta').value)) {
+              return true;
+           }
+      }
     getRowTableConsulta(value: any): void {
       this.formsRegister.get('key').setValue(value.key);
       this.formsRegister.get('idPaciente').setValue(value.idPaciente);

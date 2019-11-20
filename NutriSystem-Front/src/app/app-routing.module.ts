@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.component';
+import { AgendaComponent } from './agenda/agenda.component';
 
 
 const routes: Routes = [
@@ -22,8 +23,8 @@ const routes: Routes = [
     },
 
     {
-        path: 'cadastroNutricionista',
-        component: CadastroNutricionistaComponent
+        path: 'agenda',
+        component: AgendaComponent, canActivate: [AuthGuard]
     },
     {
         path: 'novaConsulta',

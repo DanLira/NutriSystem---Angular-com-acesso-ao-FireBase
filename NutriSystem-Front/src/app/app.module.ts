@@ -37,6 +37,7 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './guards/auth.service';
 import { NutricionistaModalComponent } from './cadastro-nutricionista/nutricionista-modal/nutricionista-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AgendaComponent } from './agenda/agenda.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     CadastroConsultorioComponent,
     MarcarConsultaComponent,
     HomeComponent,
-    NutricionistaModalComponent
+    NutricionistaModalComponent,
+    AgendaComponent
   ],
   imports: [
     HttpClientModule,

@@ -48,44 +48,6 @@ export class AuthService {
   }
 
 
-  ////////////////////////////////////////////////////
-
-
-  // user: Observable<firebase.User>;
-
-  //   constructor(private router: Router, public afAuth: AngularFireAuth) {
-  //       this.user = afAuth.authState;
-  //   }
-
-  //   public login(email: string, senha: string) {
-
-  //       return new Promise((resolve, reject) => {
-
-  //           this.afAuth.auth.signInWithEmailAndPassword(email, senha).then((user) => {
-
-  //               localStorage['token'] = user.user;
-  //               this.router.navigate(['']);
-
-  //           })
-  //               .catch((error) => {
-  //                   console.log(error);
-  //                   this.router.navigate(['/login']);
-  //               });
-  //       })
-  //           .catch((error) => {
-  //               console.log(error);
-  //               this.router.navigate(['/login']);
-  //           });
-  //   }
-
-  //   public logout() {
-  //       return this.afAuth.auth.signOut();
-  //   }
-
-
-
-
-
 
 
 }

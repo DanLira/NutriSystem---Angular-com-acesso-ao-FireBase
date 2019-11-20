@@ -99,7 +99,7 @@ body{
 	margin-top: 10px;
 }
 
-.login input[type=button]{
+.btn1{
 	width: 250px;
 	height: 35px;
 	background: #fff;
@@ -112,7 +112,23 @@ body{
 	font-weight: 400;
 	padding: 6px;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+
+}
+
+.btn2{
+	width: 250px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #00BCD4;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 5px;
 
 }
 
