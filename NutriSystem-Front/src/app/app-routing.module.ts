@@ -13,7 +13,7 @@ import { AgendaComponent } from './agenda/agenda.component';
 const routes: Routes = [
 
     {
-        path: '',
+        path: 'home',
         component: HomeComponent, canActivate: [AuthGuard]
     },
 

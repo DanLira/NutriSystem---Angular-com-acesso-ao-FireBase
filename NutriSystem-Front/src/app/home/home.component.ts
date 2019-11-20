@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AuthService } from '../guards/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +9,18 @@ import { AuthService } from '../guards/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  isLoggedIn$: Observable<boolean>;
+  id: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.id = localStorage.getItem('token');
   }
 
-  onLogout(){
+  onLogout() {
+    console.log('logout');
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

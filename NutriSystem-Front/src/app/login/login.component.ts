@@ -3,6 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NutricionistaModalComponent } from '../cadastro-nutricionista/nutricionista-modal/nutricionista-modal.component';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { NutricionistaFireBaseService } from '../cadastro-nutricionista/nutricionista-fire-base.service';
+import { Nutricionista } from '../model/nutricionista.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +18,16 @@ export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
   private formSubmitAttempt: boolean;
-
+  returnUrl: string;
+  nutricionistaList: Nutricionista[];
+  dataSource = new MatTableDataSource<Nutricionista>();
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    public dialog: MatDialog
+    private router: Router,
+    public dialog: MatDialog,
+    private readonly _nutricionistaService: NutricionistaFireBaseService,
+    private readonly toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -25,25 +35,37 @@ export class LoginComponent implements OnInit {
       crn: ['', Validators.required],
       senha: ['', Validators.required]
     });
+    this.returnUrl = '/home';
+    this.authService.logout();
+    this._nutricionistaService.getAllNutricionista()
+    .subscribe((nutricionistas: Nutricionista[]) => {
+      this.nutricionistaList = (!!nutricionistas) ? nutricionistas : [];
+  });
   }
 
-  isFieldInvalid(field: string) {
-    return (
-      (!this.loginForm.get(field).valid && this.loginForm.get(field).touched) ||
-      (this.loginForm.get(field).untouched && this.formSubmitAttempt)
-    );
-  }
+  get f() { return this.loginForm.controls; }
 
   fazerLogin() {
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value);
+  if (this.loginForm.invalid) {
+    return;
+ } else {
+   const user = this.nutricionistaList.find(x => x.crn === this.f.crn.value && x.senha === this.f.senha.value);
+   if (user) {
+       console.log('Login successful');
+       localStorage.setItem('isLoggedIn', 'true');
+       localStorage.setItem('token', this.f.crn.value);
+       this.router.navigate([this.returnUrl]);
+    } else {
+      this.toastr.warning('Login ou Senha invalida!', '');
     }
-    this.formSubmitAttempt = true;
-  }
 
-  // fazerLogin(email, senha) {
-  //   this.authService.login(email, senha);
-  // }
+
+  }
+}
+
+
+
+
 
   cadastrarNutricionista(): void {
      this.dialog.open(NutricionistaModalComponent, {

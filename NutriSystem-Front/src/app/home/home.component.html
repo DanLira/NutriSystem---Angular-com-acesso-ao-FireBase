@@ -19,7 +19,7 @@
               <div class="sub-menu-title">Atendimento</div>
             </div>
             <div class="sub-menu-items">
-              <div class="sub-menu-items-description item-color" routerLink="/cadastroPaciente" routerLinkActive="active">
+              <div class="sub-menu-items-description item-color" routerLink="/" routerLinkActive="active">
                 Novo</div>
             </div>
             <div class="sub-menu">
@@ -62,7 +62,7 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content style="background: #eeeeee">
-      <mat-toolbar class="header-toolbar" [hidden]="hiddenMenu" *ngIf="isLoggedIn$ | async as isLoggedIn">
+      <mat-toolbar class="header-toolbar" [hidden]="hiddenMenu">
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
@@ -70,7 +70,7 @@
         <span class="toolbar-spacer"></span>
         <mat-icon class="icons-margim">work</mat-icon>
         <mat-icon class="icons-margim">notifications_active</mat-icon>
-        <mat-icon style="margin-right: 15px" class="icons-margim" (click)="onLogout()" *ngIf="isLoggedIn">input</mat-icon>
+        <mat-icon style="margin-right: 15px" class="icons-margim" (click)="onLogout()">input</mat-icon>
       </mat-toolbar>
       <div class="wrapper-sub-header" [hidden]="hiddenMenu">
       </div>
