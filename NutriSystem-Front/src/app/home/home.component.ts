@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  id: string;
+  nome: string;
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    this.id = localStorage.getItem('token');
+    this.nome = localStorage.getItem('nome');
   }
 
   onLogout() {

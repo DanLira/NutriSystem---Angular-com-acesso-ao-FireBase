@@ -10,6 +10,8 @@ import { NutricionistaFireBaseService } from '../cadastro-nutricionista/nutricio
 import { ConsultorioFireBaseService } from '../cadastro-consultorio/consultorio-fire-base.service';
 import { PacienteFireBaseService } from '../cadastro-paciente/paciente-fire-base.service';
 import { ConsultaFireBaseService } from './consulta-fire-base.service';
+import { AgendaFireBaseService } from '../agenda/agenda-fire-base.service';
+import { Agenda } from '../model/agenda.model';
 
 @Component({
   selector: 'app-marcar-consulta',
@@ -18,17 +20,19 @@ import { ConsultaFireBaseService } from './consulta-fire-base.service';
 })
 export class MarcarConsultaComponent implements OnInit {
   consulta: Consulta[];
-
+  nutricionistaLogado: string;
   formsRegister: FormGroup;
   filterFormConsulta: FormGroup;
   pacienteList: Paciente[];
   consultaList: Consulta[];
   nutricionistaList: Nutricionista[];
+  agendaList: Agenda[];
   idConsultorio: number;
   consultorioList: Consultorio[];
   dataSourcePaciente = new MatTableDataSource<Paciente>();
   dataSourceConsultorio = new MatTableDataSource<Consultorio>();
   dataSourceNutricionista = new MatTableDataSource<Nutricionista>();
+  dataSourceAgenda = new MatTableDataSource<Agenda>();
   displayedColumns: string[] = ['dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
 
@@ -39,6 +43,7 @@ export class MarcarConsultaComponent implements OnInit {
               private readonly _nutricionistaService: NutricionistaFireBaseService,
               private readonly _pacienteService: PacienteFireBaseService,
               private readonly _consultorioService: ConsultorioFireBaseService,
+              private readonly _agendaService: AgendaFireBaseService,
               private readonly toastr: ToastrService) { }
 
   ngOnInit() {
@@ -53,29 +58,37 @@ export class MarcarConsultaComponent implements OnInit {
       idConsultorio: ['']
 
     });
+    this.nutricionistaLogado = localStorage.getItem('nome');
 
     this._marcarConsultaService.getAllConsulta()
       .subscribe((consultas: Consulta[]) => {
         this.consultaList = (!!consultas) ? consultas : [];
         this.dataSource.data = [...this.consultaList];
-       });
 
-    this._nutricionistaService.getAllNutricionista()
+        this._agendaService.getAllAgenda()
+      .subscribe((agendas: Agenda[]) => {
+        this.agendaList = (!!agendas) ? agendas : [];
+        this.dataSourceAgenda.data = [...this.agendaList];
+
+        this._nutricionistaService.getAllNutricionista()
         .subscribe((nutricionistas: Nutricionista[]) => {
           this.nutricionistaList = (!!nutricionistas) ? nutricionistas : [];
           this.dataSourceNutricionista.data = [...this.nutricionistaList];
-      });
 
-    this._pacienteService.getAllPaciente()
+          this._pacienteService.getAllPaciente()
         .subscribe((pacientes: Paciente[]) => {
           this.pacienteList = (!!pacientes) ? pacientes : [];
           this.dataSourcePaciente.data = [...this.pacienteList];
-      });
 
-    this._consultorioService.getAllConsultorio()
+          this._consultorioService.getAllConsultorio()
       .subscribe((consultorios: Consultorio[]) => {
         this.consultorioList = (!!consultorios) ? consultorios : [];
+        });
        });
+      });
+    });
+
+  });
 
     this.filterFormConsulta = this._formBuilder.group({
         horaConsultaFilterCtrl: [''],
@@ -107,25 +120,22 @@ export class MarcarConsultaComponent implements OnInit {
                   this.formsRegister.reset();
                   this.toastr.success('Consulta atualizada com sucesso!', 'Editar');
                 } else {
-                  if (this.verificaDisponibilidade()) {
                     this._marcarConsultaService.createConsulta(consulta);
                     this.formsRegister.reset();
                     this.toastr.success('Consulta marcada com sucesso!', 'Salvar');
-                  } else {
-                    this.toastr.warning('Este horário não estar disponivel!', '');
-                  }
                 }
 
     }
 
-      verificaDisponibilidade(): boolean {
-        debugger;
-        if (this.consultaList.map(x => x.dataConsulta ===
-          (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR'))
-           && this.consultaList.map(x => x.horaConsulta === this.formsRegister.get('horaConsulta').value)) {
-              return true;
-           }
-      }
+      // getDisponibilidade() {
+      //   let horaDisponivel: Agenda[] = this.agendaList;
+      //   horaDisponivel.forEach(x => {
+      //      if (x.statusAgenda === 'Livre') {
+      //       horaDisponivel.
+      //      }
+
+      //    });
+      // }
     getRowTableConsulta(value: any): void {
       this.formsRegister.get('key').setValue(value.key);
       this.formsRegister.get('idPaciente').setValue(value.idPaciente);

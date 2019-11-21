@@ -17,7 +17,6 @@ import { MatTableDataSource } from '@angular/material';
 export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
-  private formSubmitAttempt: boolean;
   returnUrl: string;
   nutricionistaList: Nutricionista[];
   dataSource = new MatTableDataSource<Nutricionista>();
@@ -54,6 +53,7 @@ export class LoginComponent implements OnInit {
        console.log('Login successful');
        localStorage.setItem('isLoggedIn', 'true');
        localStorage.setItem('token', this.f.crn.value);
+       localStorage.setItem('nome', user.nome);
        this.router.navigate([this.returnUrl]);
     } else {
       this.toastr.warning('Login ou Senha invalida!', '');

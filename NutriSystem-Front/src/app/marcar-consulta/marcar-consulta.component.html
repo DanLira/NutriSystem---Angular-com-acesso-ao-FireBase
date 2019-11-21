@@ -37,30 +37,14 @@
                           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                           <mat-datepicker #picker1></mat-datepicker>          
                         </mat-form-field>
-                <mat-form-field class="col-3" appearance="outline">
+                <mat-form-field class="col-4" appearance="outline">
                   <mat-label>Horário da Consulta</mat-label>
                       <mat-select required formControlName="horaConsulta" value={{formsRegister.value.horaConsulta}}>
                         <mat-option>Selecione</mat-option>
-                       <mat-option value="07:00">07:00</mat-option>
-                       <mat-option value="07:30">07:30</mat-option>
-                        <mat-option value="08:00">08:00</mat-option>
-                        <mat-option value="08:30">08:30</mat-option>
-                        <mat-option value="09:00">09:00</mat-option>
-                        <mat-option value="09:30">09:30</mat-option>
-                        <mat-option value="10:00">10:00</mat-option>
-                        <mat-option value="10:30">10:30</mat-option>
-                        <mat-option value="11:00">11:00</mat-option>
-                        <mat-option value="11:30">11:30</mat-option>
-                        <mat-option value="14:00">14:00</mat-option>
-                        <mat-option value="14:30">14:30</mat-option>
-                        <mat-option value="15:00">15:00</mat-option>
-                        <mat-option value="15:30">15:30</mat-option>
-                        <mat-option value="16:00">16:00</mat-option>
-                        <mat-option value="16:30">16:30</mat-option>
-                        <mat-option value="17:00">17:00</mat-option>
+                        <mat-option [value]="item.horaConsulta" *ngFor="let item of agendaList">{{ item.horaConsulta }}</mat-option>
                       </mat-select>
                  </mat-form-field>
-                 <mat-form-field class="col-3" appearance="outline">
+                 <mat-form-field class="col-4" appearance="outline">
                     <mat-label>Status da Consulta</mat-label>
                         <mat-select required formControlName="statusConsulta" value={{formsRegister.value.statusConsulta}}>
                           <mat-option>Selecione</mat-option>

@@ -11,6 +11,11 @@ import { AgendaComponent } from './agenda/agenda.component';
 
 
 const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
 
     {
         path: 'home',
