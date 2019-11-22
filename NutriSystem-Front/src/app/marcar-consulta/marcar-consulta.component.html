@@ -41,7 +41,7 @@
                   <mat-label>Horário da Consulta</mat-label>
                       <mat-select required formControlName="horaConsulta" value={{formsRegister.value.horaConsulta}}>
                         <mat-option>Selecione</mat-option>
-                        <mat-option [value]="item.horaConsulta" *ngFor="let item of agendaList">{{ item.horaConsulta }}</mat-option>
+                        <mat-option [value]="item.horaConsulta" *ngFor="let item of horaDisponivel">{{ item.horaConsulta }}</mat-option>
                       </mat-select>
                  </mat-form-field>
                  <mat-form-field class="col-4" appearance="outline">

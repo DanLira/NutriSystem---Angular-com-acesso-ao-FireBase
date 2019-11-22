@@ -35,6 +35,7 @@ export class MarcarConsultaComponent implements OnInit {
   dataSourceAgenda = new MatTableDataSource<Agenda>();
   displayedColumns: string[] = ['dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
+  horaDisponivel: Agenda[] = [];
 
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
@@ -69,6 +70,8 @@ export class MarcarConsultaComponent implements OnInit {
       .subscribe((agendas: Agenda[]) => {
         this.agendaList = (!!agendas) ? agendas : [];
         this.dataSourceAgenda.data = [...this.agendaList];
+
+        this.getDisponibilidade();
 
         this._nutricionistaService.getAllNutricionista()
         .subscribe((nutricionistas: Nutricionista[]) => {
@@ -127,15 +130,13 @@ export class MarcarConsultaComponent implements OnInit {
 
     }
 
-      // getDisponibilidade() {
-      //   let horaDisponivel: Agenda[] = this.agendaList;
-      //   horaDisponivel.forEach(x => {
-      //      if (x.statusAgenda === 'Livre') {
-      //       horaDisponivel.
-      //      }
-
-      //    });
-      // }
+      getDisponibilidade() {
+        this.agendaList.forEach(x => {
+           if (x.statusAgenda === 'Livre') {
+            this.horaDisponivel.push(x);
+           }
+         });
+      }
     getRowTableConsulta(value: any): void {
       this.formsRegister.get('key').setValue(value.key);
       this.formsRegister.get('idPaciente').setValue(value.idPaciente);
