@@ -100,12 +100,6 @@ export class MarcarConsultaComponent implements OnInit {
         });
     }
 
-    // getNutricionistas() {
-    //   debugger;
-    //   this.nutricionistaList = [];
-    //   this._marcarConsultaService.getNutricionistas().subscribe((res: any[]) => {
-    //     this.nutricionistaList = res;
-    //   });
 
 
     saveConsulta() {
@@ -118,6 +112,8 @@ export class MarcarConsultaComponent implements OnInit {
         dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR')
       };
 
+      if (this.formsRegister.get('dataConsulta').value > new Date().getTime()) {
+
       if (this.formsRegister.value.key) {
                   this._marcarConsultaService.updateConsulta(consulta, this.formsRegister.value.key);
                   this.formsRegister.reset();
@@ -127,6 +123,10 @@ export class MarcarConsultaComponent implements OnInit {
                     this.formsRegister.reset();
                     this.toastr.success('Consulta marcada com sucesso!', 'Salvar');
                 }
+
+              } else {
+                this.toastr.warning('A data selecionada não pode ser menor que a data atual!', '');
+              }
 
     }
 
