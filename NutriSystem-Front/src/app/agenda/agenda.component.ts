@@ -94,15 +94,6 @@ export class AgendaComponent implements OnInit {
                 }
 
     }
-
-      // verificaDisponibilidade(): boolean {
-      //   debugger;
-      //   if (this.consultaList.map(x => x.dataConsulta ===
-      //     (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR'))
-      //      && this.consultaList.map(x => x.horaConsulta === this.formsRegister.get('horaConsulta').value)) {
-      //         return true;
-      //      }
-      // }
     getRowTableAgenda(value: any): void {
       this.formsRegister.get('key').setValue(value.key);
       this.formsRegister.get('idNutricionista').setValue(value.idNutricionista);

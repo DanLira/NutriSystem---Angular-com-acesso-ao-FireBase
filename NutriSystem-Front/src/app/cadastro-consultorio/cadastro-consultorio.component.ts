@@ -24,6 +24,7 @@ export class CadastroConsultorioComponent implements OnInit {
   nutricionistaList: Nutricionista[];
   dataSource = new MatTableDataSource<Consultorio>();
   todoDataSource: any[];
+  displayedColumns: string[] = ['nome', 'endereco', 'numero', 'bairro', 'cidade', 'telefone', 'action'];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
 
@@ -62,12 +63,16 @@ export class CadastroConsultorioComponent implements OnInit {
     this._nutricionistaService.getAllNutricionista()
         .subscribe((nutricionistas: Nutricionista[]) => {
           this.nutricionistaList = (!!nutricionistas) ? nutricionistas : [];
+
+          this._consultorioService.getAllConsultorio()
+        .subscribe((consultorios: Consultorio[]) => {
+          this.consultorioList = (!!consultorios) ? consultorios : [];
+          this.dataSource.data = this.consultorioList;
+        });
       });
 
     this.filterFormConsultorio = this._formBuilder.group({
-      nomeFantasiaFilterCtrl: [''],
-      razaoSocialFilterCtrl: [''],
-      cnpjFilterCtrl: [''],
+      nomeFilterCtrl: [''],
       enderecoFilterCtrl: [''],
       numeroFilterCtrl: ['']
     });
@@ -95,7 +100,6 @@ export class CadastroConsultorioComponent implements OnInit {
       horaFechamento: this.formsRegister.get('horaFechamento').value,
       idNutricionista: this.formsRegister.get('idNutricionista').value
     };
-    debugger;
     if (this.formsRegister.value.key) {
       this._consultorioService.updateConsultorio(consultorio, this.formsRegister.value.key);
       this.formsRegister.reset();
@@ -113,14 +117,30 @@ export class CadastroConsultorioComponent implements OnInit {
     this.formsRegister.reset();
     this.toastr.info('Campos limpos com sucesso!', 'Limpar');
   }
-  // deleteConsultorio(idConsultorio: number): void {
-  //   this._consultorioService.deleteConsultorio(idConsultorio)
-  //     .subscribe(() => this._consultorioService.getAllConsultorio()
-  //       .subscribe((consultorio: any) => {
-  //         this.consultorioList = (!!consultorio) ? consultorio : [];
-  //         this.dataSource.data = this.consultorioList;
-  //       }));
-  //   this.toastr.success('Consultório deletado com sucesso!', 'Deletar');
-  // }
+  deletePaciente(key: string): void {
+    this._consultorioService.deleteConsultorio(key);
+    this.dataSource.data = this.consultorioList;
+    this.toastr.success('Consultório deletado com sucesso!', 'Deletar');
+  }
+
+  filterTabelaPaciente(): void {
+    let filteredTable: Consultorio[] = this.consultorioList;
+    if (!this.filterFormConsultorio.value.nomeFilterCtrl) {
+      this.dataSource.data = this.consultorioList;
+    }
+    if (this.filterFormConsultorio.value.nomeFilterCtrl) {
+      filteredTable = filteredTable.filter
+      ( x =>
+        x.nomeFantasia ? x.nomeFantasia.toUpperCase().includes(this.filterFormConsultorio.value.nomeFilterCtrl.toUpperCase()) : null
+      );
+     }
+    if (this.filterFormConsultorio.value.enderecoFilterCtrl) {
+        filteredTable = filteredTable.filter
+        ( x =>
+          x.endereco ? x.endereco.toUpperCase().includes(this.filterFormConsultorio.value.enderecoFilterCtrl.toUpperCase()) : null
+        );
+    }
+    this.dataSource.data = filteredTable;
+  }
 
 }
