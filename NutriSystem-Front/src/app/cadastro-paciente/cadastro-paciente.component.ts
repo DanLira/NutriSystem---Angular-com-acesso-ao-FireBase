@@ -1,6 +1,6 @@
 import { Paciente } from './../model/paciente.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { PacienteService } from './paciente.service';
 import { ToastrService } from 'ngx-toastr';
@@ -31,12 +31,12 @@ export class CadastroPacienteComponent implements OnInit {
     this.dataSource.paginator = this.MatPaginator;
     this.formsRegister = this._formBuilder.group({
     key: [''],
-    nome: [''],
-    cpf: [''],
-    sexo: [''],
-    email: [''],
-    dataNascimento: [''],
-    celular: [''],
+    nome: ['', Validators.required],
+    cpf: ['', Validators.required],
+    sexo: ['', Validators.required],
+    email: ['', Validators.required],
+    dataNascimento: ['', Validators.required],
+    celular: ['', Validators.required],
     login: [''],
     senha: ['']
 

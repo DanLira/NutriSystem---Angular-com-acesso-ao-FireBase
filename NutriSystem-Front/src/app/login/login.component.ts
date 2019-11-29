@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
        localStorage.setItem('isLoggedIn', 'true');
        localStorage.setItem('token', this.f.crn.value);
        localStorage.setItem('nome', user.nome);
+       localStorage.setItem('key', user.key);
        this.router.navigate([this.returnUrl]);
     } else {
       this.toastr.warning('Login ou Senha invalida!', '');

@@ -58,7 +58,7 @@
                 <button mat-raised-button class="btn col-12" (click)="clearPaciente()">Limpar</button>
               </div>
           <div class="col-sm-12 col-md-1  mt-4">
-            <button mat-raised-button class="btn col-12"  (click)="savePacienteFire()">Salvar</button>
+            <button mat-raised-button class="btn col-12" [disabled]="!formsRegister.valid" (click)="savePacienteFire()">Salvar</button>
           </div>
         </div>
       </mat-card>

@@ -6,4 +6,5 @@ export interface Consulta {
  idPaciente: string;
  idNutricionista: string;
  idConsultorio: string;
+ nomePaciente?: string;
 }

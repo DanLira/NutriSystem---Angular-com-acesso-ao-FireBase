@@ -27,15 +27,17 @@ export class MarcarConsultaComponent implements OnInit {
   consultaList: Consulta[];
   nutricionistaList: Nutricionista[];
   agendaList: Agenda[];
-  idConsultorio: number;
   consultorioList: Consultorio[];
   dataSourcePaciente = new MatTableDataSource<Paciente>();
   dataSourceConsultorio = new MatTableDataSource<Consultorio>();
   dataSourceNutricionista = new MatTableDataSource<Nutricionista>();
   dataSourceAgenda = new MatTableDataSource<Agenda>();
-  displayedColumns: string[] = ['dataConsulta', 'horaConsulta', 'status', 'action'];
+  displayedColumns: string[] = ['nomePaciente', 'dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
   horaDisponivel: Agenda[] = [];
+  nomePacienteSelecionado: string;
+  id: string;
+  consultoriosNutricionista: Consultorio [] = [];
 
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
@@ -60,6 +62,7 @@ export class MarcarConsultaComponent implements OnInit {
 
     });
     this.nutricionistaLogado = localStorage.getItem('nome');
+    this.id = localStorage.getItem('key');
 
     this._marcarConsultaService.getAllConsulta()
       .subscribe((consultas: Consulta[]) => {
@@ -86,30 +89,32 @@ export class MarcarConsultaComponent implements OnInit {
           this._consultorioService.getAllConsultorio()
       .subscribe((consultorios: Consultorio[]) => {
         this.consultorioList = (!!consultorios) ? consultorios : [];
+        this.getConsultorio();
         });
        });
       });
     });
-
   });
-
     this.filterFormConsulta = this._formBuilder.group({
         horaConsultaFilterCtrl: [''],
         dataConsultaFilterCtrl: [''],
-        statusConsultaFilterCtrl: ['']
+        statusConsultaFilterCtrl: [''],
+        nomePacienteFilterCtrl: ['']
         });
     }
 
 
 
     saveConsulta() {
+      this.getPacienteSelecionado();
       const consulta: Consulta = {
         idPaciente: this.formsRegister.get('idPaciente').value,
-        idNutricionista: this.formsRegister.get('idNutricionista').value,
+        idNutricionista: localStorage.getItem('key'),
         statusConsulta: this.formsRegister.get('statusConsulta').value,
         horaConsulta: this.formsRegister.get('horaConsulta').value,
         idConsultorio: this.formsRegister.get('idConsultorio').value,
-        dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR')
+        dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR'),
+        nomePaciente: this.nomePacienteSelecionado
       };
 
       if (this.formsRegister.get('dataConsulta').value > new Date().getTime()) {
@@ -137,10 +142,27 @@ export class MarcarConsultaComponent implements OnInit {
            }
          });
       }
+
+      getPacienteSelecionado() {
+        this.pacienteList.forEach(x => {
+            if (x.key === this.formsRegister.get('idPaciente').value) {
+              this.nomePacienteSelecionado = x.nome;
+            }
+        });
+      }
+
+
+      getConsultorio() {
+        this.consultorioList.forEach(x => {
+          if (x.idNutricionista === localStorage.getItem('key') ) {
+             this.consultoriosNutricionista.push(x);
+          }
+      });
+    }
+
     getRowTableConsulta(value: any): void {
       this.formsRegister.get('key').setValue(value.key);
       this.formsRegister.get('idPaciente').setValue(value.idPaciente);
-      this.formsRegister.get('idNutricionista').setValue(value.idNutricionista);
       this.formsRegister.get('statusConsulta').setValue(value.statusConsulta);
       this.formsRegister.get('horaConsulta').setValue(value.horaConsulta);
       this.formsRegister.get('idConsultorio').setValue(value.idConsultorio);
@@ -163,9 +185,15 @@ export class MarcarConsultaComponent implements OnInit {
     let filteredTable: Consulta[] = this.consultaList;
     if (!this.filterFormConsulta.value.dataConsultaFilterCtrl
        && !this.filterFormConsulta.value.statusConsultaFilterCtrl && !
-       this.filterFormConsulta.value.horaConsultaFilterCtrl) {
+       this.filterFormConsulta.value.horaConsultaFilterCtrl && !this.filterFormConsulta.value.nomePacienteFilterCtrl) {
       this.dataSource.data = [...this.consultaList];
     }
+    if (this.filterFormConsulta.value.nomePacienteFilterCtrl) {
+      filteredTable = filteredTable.filter
+      ( x =>
+        x.nomePaciente ? x.nomePaciente.toUpperCase().includes(this.filterFormConsulta.value.nomePacienteFilterCtrl.toUpperCase()) : null
+      );
+     }
     if (this.filterFormConsulta.value.dataConsultaFilterCtrl) {
       filteredTable = filteredTable.filter
       ( x =>

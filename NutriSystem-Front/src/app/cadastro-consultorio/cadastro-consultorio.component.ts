@@ -1,6 +1,6 @@
 import { Consultorio } from './../model/consultorio.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -39,25 +39,25 @@ export class CadastroConsultorioComponent implements OnInit {
     this.formsRegister = this._formBuilder.group({
       key: [''],
       idConsultorio: [''],
-      nomeFantasia: [''],
-      razaoSocial: [''],
-      cnpj: [''],
-      endereco: [''],
-      numero: [''],
-      bairro: [''],
+      nomeFantasia: ['', Validators.required],
+      razaoSocial: ['', Validators.required],
+      cnpj: ['', Validators.required],
+      endereco: ['', Validators.required],
+      numero: ['', Validators.required],
+      bairro: ['', Validators.required],
       cep: [''],
       cidade: [''],
       uf: [''],
       pais: [''],
-      email: [''],
-      telefone: [''],
-      celular: [''],
+      email: ['', Validators.required],
+      telefone: ['', Validators.required],
+      celular: ['', Validators.required],
       whatsapp: [''],
       instagram: [''],
       facebook: [''],
-      horaAbertura: [''],
-      horaFechamento: [''],
-      idNutricionista: ['']
+      horaAbertura: ['', Validators.required],
+      horaFechamento: ['', Validators.required],
+      idNutricionista: ['', Validators.required]
     });
 
     this._nutricionistaService.getAllNutricionista()
@@ -74,7 +74,7 @@ export class CadastroConsultorioComponent implements OnInit {
     this.filterFormConsultorio = this._formBuilder.group({
       nomeFilterCtrl: [''],
       enderecoFilterCtrl: [''],
-      numeroFilterCtrl: ['']
+      cidadeFilterCtrl: ['']
     });
 
   }
@@ -103,6 +103,7 @@ export class CadastroConsultorioComponent implements OnInit {
     if (this.formsRegister.value.key) {
       this._consultorioService.updateConsultorio(consultorio, this.formsRegister.value.key);
       this.formsRegister.reset();
+      this.toastr.success('Consultorio editado com sucesso!', 'Editar');
     } else {
       this._consultorioService.createConsultorio(consultorio);
       this.formsRegister.reset();
@@ -117,13 +118,38 @@ export class CadastroConsultorioComponent implements OnInit {
     this.formsRegister.reset();
     this.toastr.info('Campos limpos com sucesso!', 'Limpar');
   }
-  deletePaciente(key: string): void {
+  getRowTableConsultorio(value: any): void {
+    this.formsRegister.get('key').setValue(value.key);
+    this.formsRegister.get('nomeFantasia').setValue(value.nomeFantasia);
+    this.formsRegister.get('razaoSocial').setValue(value.razaoSocial);
+    this.formsRegister.get('cnpj').setValue(value.cnpj);
+    this.formsRegister.get('endereco').setValue(value.endereco);
+    this.formsRegister.get('numero').setValue(value.numero);
+    this.formsRegister.get('bairro').setValue(value.bairro);
+    this.formsRegister.get('cep').setValue(value.cep);
+    this.formsRegister.get('cidade').setValue(value.cidade);
+    this.formsRegister.get('uf').setValue(value.uf);
+    this.formsRegister.get('pais').setValue(value.pais);
+    this.formsRegister.get('email').setValue(value.email);
+    this.formsRegister.get('telefone').setValue(value.telefone);
+    this.formsRegister.get('celular').setValue(value.celular);
+    this.formsRegister.get('whatsapp').setValue(value.whatsapp);
+    this.formsRegister.get('instagram').setValue(value.instagram);
+    this.formsRegister.get('facebook').setValue(value.facebook);
+    this.formsRegister.get('horaAbertura').setValue(value.horaAbertura);
+    this.formsRegister.get('horaFechamento').setValue(value.horaFechamento);
+    this.formsRegister.get('idNutricionista').setValue(value.idNutricionista);
+    }
+
+
+  deleteConsultorio(key: string): void {
     this._consultorioService.deleteConsultorio(key);
     this.dataSource.data = this.consultorioList;
+    this.clearConsultorio();
     this.toastr.success('Consultório deletado com sucesso!', 'Deletar');
   }
 
-  filterTabelaPaciente(): void {
+  filterTabelaConsultorio(): void {
     let filteredTable: Consultorio[] = this.consultorioList;
     if (!this.filterFormConsultorio.value.nomeFilterCtrl) {
       this.dataSource.data = this.consultorioList;
@@ -140,6 +166,12 @@ export class CadastroConsultorioComponent implements OnInit {
           x.endereco ? x.endereco.toUpperCase().includes(this.filterFormConsultorio.value.enderecoFilterCtrl.toUpperCase()) : null
         );
     }
+    if (this.filterFormConsultorio.value.cidadeFilterCtrl) {
+      filteredTable = filteredTable.filter
+      ( x =>
+        x.cidade ? x.cidade.toUpperCase().includes(this.filterFormConsultorio.value.cidadeFilterCtrl.toUpperCase()) : null
+      );
+  }
     this.dataSource.data = filteredTable;
   }
 
