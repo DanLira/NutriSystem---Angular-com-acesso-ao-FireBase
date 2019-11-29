@@ -123,9 +123,13 @@
             </mat-accordion>
               <div class="mat-elevation-z8 mt-2">
                 <table mat-table aria-describedby="mydesc" [dataSource]="dataSource">
-                    <ng-container matColumnDef="nomePaciente">
+                      <ng-container matColumnDef="nomePaciente">
                         <th mat-header-cell *matHeaderCellDef id="nomePaciente"> Paciente</th>
                         <td mat-cell *matCellDef="let element" > {{element.nomePaciente}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="nomeConsultorio">
+                        <th mat-header-cell *matHeaderCellDef id="nomeConsultorio"> Consultório</th>
+                        <td mat-cell *matCellDef="let element" > {{element.nomeConsultorio}} </td>
                       </ng-container>
                   <ng-container matColumnDef="horaConsulta">
                     <th mat-header-cell *matHeaderCellDef id="horaConsulta"> Horário da Consulta</th>

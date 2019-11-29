@@ -18,6 +18,9 @@ import { AgendaFireBaseService } from './agenda-fire-base.service';
 export class AgendaComponent implements OnInit {
   angenda: Agenda[];
 
+  nutricionistaLogado: string;
+  id: string;
+  consultoriosNutricionista: Consultorio[] = [];
   formsRegister: FormGroup;
   filterFormAgenda: FormGroup;
   agendaList: Agenda[];
@@ -48,6 +51,9 @@ export class AgendaComponent implements OnInit {
 
     });
 
+    this.nutricionistaLogado = localStorage.getItem('nome');
+    this.id = localStorage.getItem('key');
+
     this._nutricionistaService.getAllNutricionista()
         .subscribe((nutricionistas: Nutricionista[]) => {
           this.nutricionistaList = (!!nutricionistas) ? nutricionistas : [];
@@ -61,6 +67,7 @@ export class AgendaComponent implements OnInit {
           this._consultorioService.getAllConsultorio()
       .subscribe((consultorios: Consultorio[]) => {
         this.consultorioList = (!!consultorios) ? consultorios : [];
+        this.getConsultorio();
       });
      });
     });
@@ -75,7 +82,7 @@ export class AgendaComponent implements OnInit {
 
     geraAgenda() {
       const agenda: Agenda = {
-        idNutricionista: this.formsRegister.get('idNutricionista').value,
+        idNutricionista: localStorage.getItem('key'),
         statusAgenda: this.formsRegister.get('statusAgenda').value,
         horaConsulta: this.formsRegister.get('horaConsulta').value,
         idConsultorio: this.formsRegister.get('idConsultorio').value,
@@ -94,6 +101,14 @@ export class AgendaComponent implements OnInit {
                 }
 
     }
+
+    getConsultorio() {
+      this.consultorioList.forEach(x => {
+        if (x.idNutricionista === localStorage.getItem('key') ) {
+           this.consultoriosNutricionista.push(x);
+        }
+    });
+  }
     getRowTableAgenda(value: any): void {
       this.formsRegister.get('key').setValue(value.key);
       this.formsRegister.get('idNutricionista').setValue(value.idNutricionista);

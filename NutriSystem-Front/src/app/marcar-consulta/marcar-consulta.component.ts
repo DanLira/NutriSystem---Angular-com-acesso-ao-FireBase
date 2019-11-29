@@ -32,12 +32,14 @@ export class MarcarConsultaComponent implements OnInit {
   dataSourceConsultorio = new MatTableDataSource<Consultorio>();
   dataSourceNutricionista = new MatTableDataSource<Nutricionista>();
   dataSourceAgenda = new MatTableDataSource<Agenda>();
-  displayedColumns: string[] = ['nomePaciente', 'dataConsulta', 'horaConsulta', 'status', 'action'];
+  displayedColumns: string[] = ['nomePaciente', 'nomeConsultorio', 'dataConsulta', 'horaConsulta', 'status', 'action'];
   dataSource = new MatTableDataSource<Consulta>();
   horaDisponivel: Agenda[] = [];
   nomePacienteSelecionado: string;
   id: string;
   consultoriosNutricionista: Consultorio [] = [];
+  nomeConsultorio: string;
+  consultaCancelada = false;
 
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
@@ -106,6 +108,7 @@ export class MarcarConsultaComponent implements OnInit {
 
 
     saveConsulta() {
+      this.listarConsultorioSelecionado();
       this.getPacienteSelecionado();
       const consulta: Consulta = {
         idPaciente: this.formsRegister.get('idPaciente').value,
@@ -114,15 +117,28 @@ export class MarcarConsultaComponent implements OnInit {
         horaConsulta: this.formsRegister.get('horaConsulta').value,
         idConsultorio: this.formsRegister.get('idConsultorio').value,
         dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR'),
-        nomePaciente: this.nomePacienteSelecionado
+        nomePaciente: this.nomePacienteSelecionado,
+        nomeConsultorio: this.nomeConsultorio
+      };
+
+      this.cancelarConsulta();
+      const agenda: Agenda = {
+        idNutricionista: localStorage.getItem('key'),
+        statusAgenda:  this.consultaCancelada ? 'Livre' : 'Ocupada',
+        horaConsulta: this.formsRegister.get('horaConsulta').value,
+        idConsultorio: this.formsRegister.get('idConsultorio').value,
+        dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR')
       };
 
       if (this.formsRegister.get('dataConsulta').value > new Date().getTime()) {
 
       if (this.formsRegister.value.key) {
-                  this._marcarConsultaService.updateConsulta(consulta, this.formsRegister.value.key);
-                  this.formsRegister.reset();
-                  this.toastr.success('Consulta atualizada com sucesso!', 'Editar');
+
+              this._agendaService.updateAgenda(agenda, this.formsRegister.value.key );
+
+              this._marcarConsultaService.updateConsulta(consulta, this.formsRegister.value.key);
+              this.formsRegister.reset();
+              this.toastr.success('Consulta atualizada com sucesso!', 'Editar');
                 } else {
                     this._marcarConsultaService.createConsulta(consulta);
                     this.formsRegister.reset();
@@ -134,6 +150,18 @@ export class MarcarConsultaComponent implements OnInit {
               }
 
     }
+
+    cancelarConsulta(): boolean {
+
+      if (this.formsRegister.get('statusConsulta').value === 'Cancelada'
+      || this.formsRegister.get('statusConsulta').value === 'Realizada') {
+
+        return this.consultaCancelada = true;
+
+      }
+      return this.consultaCancelada = false;
+    }
+
 
       getDisponibilidade() {
         this.agendaList.forEach(x => {
@@ -147,6 +175,14 @@ export class MarcarConsultaComponent implements OnInit {
         this.pacienteList.forEach(x => {
             if (x.key === this.formsRegister.get('idPaciente').value) {
               this.nomePacienteSelecionado = x.nome;
+            }
+        });
+      }
+
+      listarConsultorioSelecionado() {
+        this.consultorioList.forEach(x => {
+            if (x.key === this.formsRegister.get('idConsultorio').value) {
+              this.nomeConsultorio = x.nomeFantasia;
             }
         });
       }
