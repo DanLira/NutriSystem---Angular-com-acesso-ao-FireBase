@@ -83,7 +83,7 @@ export class AgendaComponent implements OnInit {
     geraAgenda() {
       const agenda: Agenda = {
         idNutricionista: localStorage.getItem('key'),
-        statusAgenda: this.formsRegister.get('statusAgenda').value,
+        statusAgenda: 'Livre',
         horaConsulta: this.formsRegister.get('horaConsulta').value,
         idConsultorio: this.formsRegister.get('idConsultorio').value,
         dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR')

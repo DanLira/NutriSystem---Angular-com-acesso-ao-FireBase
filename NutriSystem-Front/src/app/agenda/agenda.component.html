@@ -7,25 +7,25 @@
               <mat-card-title>Agenda
               </mat-card-title>
               <form [formGroup]="formsRegister" class="row">
-                      <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
+                      <mat-form-field class="col-xs-6 col-md-4" appearance="outline">
                         <mat-label>Nutricionista</mat-label>
                       <input matInput placeholder="Nome" disabled value={{nutricionistaLogado}}>
                     </mat-form-field>
-                    <mat-form-field class="col-xs-12 col-md-4" appearance="outline">
-                      <mat-select formControlName="idConsultorio" value={{formsRegister.value.idConsultorio}} >
+                    <mat-form-field class="col-xs-12 col-md-3" appearance="outline">
+                      <mat-select required formControlName="idConsultorio" value={{formsRegister.value.idConsultorio}} >
                         <mat-option>Selecione</mat-option>
                         <mat-option [value]="item.key" *ngFor="let item of consultoriosNutricionista">{{ item.nomeFantasia }}
                         </mat-option>
                       </mat-select>
                       <mat-label>Selecione o Consultório</mat-label>
                     </mat-form-field>
-                        <mat-form-field class="col-4" appearance="outline">
+                        <mat-form-field class="col-3" appearance="outline">
                           <input matInput required readonly [matDatepicker]="picker1" placeholder="Selecione a Data"
                            formControlName="dataConsulta" value={{formsRegister.value.DataConsulta}}>
                           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                           <mat-datepicker #picker1></mat-datepicker>          
                         </mat-form-field>
-                <mat-form-field class="col-4" appearance="outline">
+                <mat-form-field class="col-2" appearance="outline">
                   <mat-label>Horário</mat-label>
                       <mat-select required formControlName="horaConsulta" value={{formsRegister.value.horaConsulta}}>
                         <mat-option>Selecione</mat-option>
@@ -48,14 +48,6 @@
                         <mat-option value="17:00">17:00</mat-option>
                       </mat-select>
                  </mat-form-field>
-                 <mat-form-field class="col-6" appearance="outline">
-                    <mat-label>Status da Agenda</mat-label>
-                        <mat-select required formControlName="statusAgenda" value={{formsRegister.value.statusAgenda}}>
-                          <mat-option>Selecione</mat-option>
-                        <mat-option value="Livre">Livre</mat-option>
-                          <mat-option value="Ocupada">Ocupada</mat-option>
-                        </mat-select>
-                  </mat-form-field>
               </form>
             </div>
           </div>

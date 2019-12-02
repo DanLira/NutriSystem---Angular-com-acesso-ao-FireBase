@@ -44,6 +44,11 @@ const routes: Routes = [
     {
         path: 'cadastroConsultorio',
         component: CadastroConsultorioComponent, canActivate: [AuthGuard]
+    },
+
+    {
+        path: 'perfilNutricionista',
+        component: CadastroNutricionistaComponent, canActivate: [AuthGuard]
     }
 
 ];
