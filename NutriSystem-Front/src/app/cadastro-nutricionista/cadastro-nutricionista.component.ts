@@ -23,6 +23,7 @@ export class CadastroNutricionistaComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'email', 'crn', 'action'];
   dataSource = new MatTableDataSource<Nutricionista>();
   todoDataSource: any[];
+  nome: string;
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   router: Router;
@@ -45,6 +46,7 @@ export class CadastroNutricionistaComponent implements OnInit {
       idNutricionista: ['']
     });
 
+    this.nome =  localStorage.getItem('nome');
 
     this.filterFormNutricionista = this._formBuilder.group({
       nomeFilterCtrl: [''],
@@ -55,7 +57,7 @@ export class CadastroNutricionistaComponent implements OnInit {
   }
   saveNutricionista() {
     const nutricionista: Nutricionista = {
-      nome: this.formsRegister.get('nome').value,
+      nome: this.nome,
       email: this.formsRegister.get('email').value,
       sexo: this.formsRegister.get('sexo').value,
       crn: this.formsRegister.get('crn').value,
@@ -75,8 +77,11 @@ export class CadastroNutricionistaComponent implements OnInit {
         this.router.navigate(['/', 'home']);
     }
   }
-  cancelar(): void {
-    this.router.navigate(['/login']);
+  clearNutricionista(): void {
+      this.dataSource.data = this.nutricionistaList;
+      this.formsRegister.value.key = null;
+      this.formsRegister.reset();
+      this.toastr.info('Campos limpos com sucesso!', 'Limpar');
   }
   getRowTableNutricionista(value: any): void {
     this.formsRegister.get('key').setValue(value.key);

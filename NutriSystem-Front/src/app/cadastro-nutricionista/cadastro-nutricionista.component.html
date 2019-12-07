@@ -9,7 +9,7 @@
                             <mat-form-field class="col-5" appearance="outline">
                                 <mat-label>Nome</mat-label>
                                 <input matInput placeholder="Nome" required formControlName="nome"
-                                    value={{formsRegister.value.nome}}>
+                                    value={{nome}}>
                             </mat-form-field>
 
                             <mat-form-field class="col-2" appearance="outline">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-1 offset-md-10 mt-4">
-                        <button mat-raised-button class="btn col-12" (click)="cancelar()">Cancelar</button>
+                        <button mat-raised-button class="btn col-12" (click)="clearNutricionista()">Limpar</button>
                     </div>
                     <div class="col-sm-12 col-md-1  mt-4">
                         <button mat-raised-button class="btn col-12" (click)="saveNutricionista()">Salvar</button>

@@ -13,7 +13,7 @@ import { PacienteFireBaseService } from './paciente-fire-base.service';
 })
 export class CadastroPacienteComponent implements OnInit {
   paciente: Paciente[];
-  key: string = '';
+  key = '';
   formsRegister: FormGroup;
   filterFormPaciente: FormGroup;
   pacienteList: Paciente[];
@@ -69,10 +69,17 @@ export class CadastroPacienteComponent implements OnInit {
         this.formsRegister.reset();
         this.toastr.success('Paciente atualizado com sucesso!', 'Editar');
       } else {
-        this._pacienteFireBaseService.createPaciente(paciente);
-        this.formsRegister.reset();
-        this.toastr.success('Paciente salvo com sucesso!', 'Salvar');
-
+        if (this.pacienteList.filter(x => x.email.toUpperCase() === this.formsRegister.get('email').value.toUpperCase()).length <= 0) {
+          if (this.pacienteList.filter(x => x.cpf.toUpperCase() === this.formsRegister.get('cpf').value.toUpperCase()).length > 0) {
+            this.toastr.warning('Este CPF já existe!', '');
+          } else {
+            this._pacienteFireBaseService.createPaciente(paciente);
+            this.formsRegister.reset();
+            this.toastr.success('Paciente salvo com sucesso!', 'Salvar');
+          }
+        } else {
+          this.toastr.warning('Este e-mail já existe!', '');
+        }
       }
     }
     getRowTablePaciente(value: any): void {

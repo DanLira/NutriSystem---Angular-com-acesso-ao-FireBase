@@ -45,7 +45,7 @@
               value={{formsRegister.value.login}}>
       </mat-form-field>
       <mat-form-field class="col-xs-6 col-md-4" appearance="outline">
-          <input matInput placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
+          <input matInput required placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
           </button>
