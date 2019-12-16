@@ -129,8 +129,12 @@ export class MarcarConsultaComponent implements OnInit {
         idConsultorio: this.formsRegister.get('idConsultorio').value,
         dataConsulta: (this.formsRegister.get('dataConsulta').value).toLocaleDateString('pt-BR')
       };
+      const dataSelecionada = this.formsRegister.get('dataConsulta').value;
+      // if (this.consultaList.find(x => x.dataConsulta === dataSelecionada)) {
+      //   this.toastr.warning('A data selecionada não está disponível!', '');
+      // }
 
-      if (this.formsRegister.get('dataConsulta').value > new Date().getTime()) {
+      if (dataSelecionada > new Date().getTime()) {
 
       if (this.formsRegister.value.key) {
 

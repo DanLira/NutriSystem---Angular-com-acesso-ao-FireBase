@@ -1,5 +1,5 @@
 
-<div class="body"></div>
+<!-- <div class="body"></div>
 		<div class="grad"></div>
 		<div class="header">
 			<div>NutriSystem<span>Sistema de Marcação de Consultas</span></div>
@@ -13,5 +13,38 @@
                 <input class="btn2" type="button" value="Quero me cadastrar" (click)="cadastrarNutricionista()">
                 
         </div>
-    </form>
+	</form> -->
+	
+<div class="body"></div>
+<mat-card>
+		<mat-card-title>NutriSystem</mat-card-title>
+  <mat-card-content>
+	<form [formGroup]="loginForm">
+	  <p>
+		<mat-form-field>
+		  <input type="text" matInput placeholder="Usuário" formControlName="crn">
+		</mat-form-field>
+	  </p>
+	  <p>
+		<mat-form-field>
+		  <input matInput  placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
+		  <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+		  <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+		  </button>
+		</mat-form-field>
+	  </p>
+
+	  <p *ngIf="error" class="error">
+		{{ error }}
+	  </p>
+
+	  <div class="row">
+		<button mat-button class="col-12" type="submit" (click)="fazerLogin()">Entrar</button>
+	  </div>
+	  <p class="text-cadastro">Não uma conta? <a (click)="cadastrarNutricionista()">Cadastre-se</a></p>
+	  
+
+	</form>
+  </mat-card-content>
+</mat-card>
     

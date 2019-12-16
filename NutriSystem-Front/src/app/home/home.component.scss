@@ -35,7 +35,7 @@
   }
   
   .item-selected {
-    background: #009f9e
+    background: #FF5722
   }
   
   .icon-margim-top {
@@ -98,14 +98,9 @@
   }
   
   .item-color {
-    color: #c8b2d4;
+    color: white;  
     cursor: pointer;
   }
-  
-  .item-color:hover {
-    color: white;  
-  }
-  
   .title-menu {
     font-size: 22px;
   }
@@ -115,7 +110,7 @@
   }
   
   .btn-nav:hover {
-    background: #009f9e;
+    background: #FF9100;
   }
   
   .mat-toolbar {

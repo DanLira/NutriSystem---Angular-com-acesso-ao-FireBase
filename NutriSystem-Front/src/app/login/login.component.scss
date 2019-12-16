@@ -12,151 +12,56 @@ body{
 
 .body{
 	position: absolute;
-	top: -20px;
+	top: -5px;
 	left: -20px;
 	right: -40px;
 	bottom: -40px;
 	width: auto;
 	height: auto;
-	background-image: url(/../assets/frutasBackgroud.jpg);
+	background-color: #FF5722;
 	background-size: cover;
-	-webkit-filter: blur(5px);
+	//-webkit-filter: blur(5px);
 	z-index: 0;
 	opacity: 2.8;
+	overflow: visible;
 }
 
-.grad{
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
-	width: auto;
-	height: auto;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
-	z-index: 1;
-	opacity: 0.7;
-}
+* {
+	box-sizing: border-box;
+  }
 
-.header{
-	position: absolute;
-	top: calc(35% - 35px);
-	left: calc(50% - 255px);
-	z-index: 2;
-}
+  :host {
+	display: flex;
+	justify-content: center;
+	margin: 100px 0px;
+  }
 
-.header div{
-	float: left;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 35px;
-	font-weight: 600;
-}
+  .mat-form-field {
+	width: 100%;
+	min-width: 300px;
+  }
 
-.header div span{
-	color: #00ACC1 !important;
-	text-shadow: 1px 0px 0px #fff, 
-                 -1px 0px 0px #fff, 
-                 0px 1px 0px #fff, 
-                 0px -1px 0px #fff;
-}
+  mat-card-title {
+	text-align: center;
+	  color: #FF5722;
+  }
+  mat-card-content {
+	display: flex;
+	justify-content: center;
+  }
 
-.login{
-	position: absolute;
-	top: calc(50% - 75px);
-	left: calc(50% - 50px);
-	height: 150px;
-	width: 350px;
-	padding: 10px;
-	z-index: 2;
-}
-
-.login input[type=text]{
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-}
-
-.login input[type=password]{
-	width: 250px;
-	height: 30px;
-	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 4px;
-	margin-top: 10px;
-}
-
-.btn1{
-	width: 250px;
-	height: 35px;
-	background: #fff;
-	border: 1px solid #fff;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #a18d6c;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 6px;
-	margin-top: 10px;
+  .mat-button {
+	text-align: center;
+	background: #FF5722;
+	color: white;
 	margin-bottom: 5px;
+	justify-items: center;
+  }
+  .text-cadastro {
+	  text-align: center;
+  }
 
-}
-
-.btn2{
-	width: 250px;
-	height: 35px;
-	background: #fff;
-	border: 1px solid #fff;
-	cursor: pointer;
-	border-radius: 2px;
-	color: #00BCD4;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 6px;
-	margin-top: 5px;
-
-}
-
-.login input[type=button]:hover{
-	opacity: 0.8;
-}
-
-.login input[type=button]:active{
-	opacity: 0.6;
-}
-
-.login input[type=text]:focus{
-	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
-}
-
-.login input[type=password]:focus{
-	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
-}
-
-.login input[type=button]:focus{
-	outline: none;
-}
-
-::-webkit-input-placeholder{
-   color: rgba(255,255,255,0.6);
-}
-
-::-moz-input-placeholder{
-   color: rgba(255,255,255,0.6);
-}
+  .text-cadastro a {
+	  color: #FF5722;
+	  cursor: pointer;
+  }

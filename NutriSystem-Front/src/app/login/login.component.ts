@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
   if (this.loginForm.invalid) {
     return;
  } else {
-   const user = this.nutricionistaList.find(x => x.crn === this.f.crn.value && x.senha === this.f.senha.value);
+   const user = this.nutricionistaList.find(x => x.crn === this.f.crn.value
+    && x.senha === this.f.senha.value );
    if (user) {
        console.log('Login successful');
        localStorage.setItem('isLoggedIn', 'true');

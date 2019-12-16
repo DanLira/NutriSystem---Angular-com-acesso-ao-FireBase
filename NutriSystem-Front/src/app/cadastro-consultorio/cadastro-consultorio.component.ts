@@ -51,10 +51,6 @@ export class CadastroConsultorioComponent implements OnInit {
       pais: [''],
       email: ['', Validators.required],
       telefone: ['', Validators.required],
-      celular: ['', Validators.required],
-      whatsapp: [''],
-      instagram: [''],
-      facebook: [''],
       horaAbertura: ['', Validators.required],
       horaFechamento: ['', Validators.required],
       idNutricionista: ['', Validators.required]
@@ -92,10 +88,6 @@ export class CadastroConsultorioComponent implements OnInit {
       pais: this.formsRegister.get('pais').value,
       email: this.formsRegister.get('email').value,
       telefone: this.formsRegister.get('telefone').value,
-      celular: this.formsRegister.get('celular').value,
-      whatsapp: this.formsRegister.get('whatsapp').value,
-      instagram: this.formsRegister.get('instagram').value,
-      facebook: this.formsRegister.get('facebook').value,
       horaAbertura: this.formsRegister.get('horaAbertura').value,
       horaFechamento: this.formsRegister.get('horaFechamento').value,
       idNutricionista: this.formsRegister.get('idNutricionista').value
@@ -132,10 +124,6 @@ export class CadastroConsultorioComponent implements OnInit {
     this.formsRegister.get('pais').setValue(value.pais);
     this.formsRegister.get('email').setValue(value.email);
     this.formsRegister.get('telefone').setValue(value.telefone);
-    this.formsRegister.get('celular').setValue(value.celular);
-    this.formsRegister.get('whatsapp').setValue(value.whatsapp);
-    this.formsRegister.get('instagram').setValue(value.instagram);
-    this.formsRegister.get('facebook').setValue(value.facebook);
     this.formsRegister.get('horaAbertura').setValue(value.horaAbertura);
     this.formsRegister.get('horaFechamento').setValue(value.horaFechamento);
     this.formsRegister.get('idNutricionista').setValue(value.idNutricionista);

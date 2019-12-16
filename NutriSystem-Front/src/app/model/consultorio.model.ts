@@ -14,10 +14,6 @@ export interface Consultorio {
     pais: string;
     email: string;
     telefone: string;
-    celular: string;
-    whatsapp: string;
-    instagram: string;
-    facebook: string;
     horaAbertura: string;
     horaFechamento: string;
     idNutricionista: string;

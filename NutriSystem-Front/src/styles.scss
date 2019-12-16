@@ -42,7 +42,7 @@ $break-exlarge: 1140px;
 
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-    background-color: #009f9e !important;
+    background-color: #FF9100 !important;
 }
 .mat-sidenav {
   width: 280px;
@@ -50,26 +50,26 @@ $break-exlarge: 1140px;
 }
 
 .header-toolbar{
-  background-color: #00695C;
+  background-color: #FF6D00;
   color:#fff;
 }
 
 .mat-sidenav{
-  background-color: #00695C;
+  background-color: #FF6D00;
   color:#fff;
 }
 
 .mat-drawer { 
-  background-color: #00695C;
+  background-color: #FF6D00;
   color:#fff;
 }
 
 .btn-nav{
-  background-color: #00695C !important;
+  background-color: #FF6D00 !important;
   color:#fff;
 }
 .btn-nav :hover{
-  background-color: #009f9e !important;
+  background-color: #FF9100 !important;
   color:#fff;
 }
 
@@ -95,7 +95,7 @@ $break-exlarge: 1140px;
 
 .has-centered-text {
   text-align: center;
-  background-color: #009f9e;
+  background-color: #FF9100;
   font-weight: 600;
   color: white;
   font-size: 24px;
@@ -111,8 +111,11 @@ $break-exlarge: 1140px;
   margin-bottom: 20px;
   margin-left: 5px;
   .mat-icon{
-    color: #009f9e;
+    color: #FF9100;
   }
+}
+.mat-card-title {
+  color: #FF6D00;
 }
 .expansion-list-todo {
   border: solid 1px #ccc;
@@ -122,7 +125,7 @@ $break-exlarge: 1140px;
   border-radius: 4px;
   overflow: auto;
   display: block;
-  border-right: #009f9e solid 3px;
+  border-right: #FF9100 solid 3px;
   
   ::before{
     position: absolute;
@@ -130,8 +133,8 @@ $break-exlarge: 1140px;
     right: 6px;
     display: inline-block;
     border-top: 30px solid transparent;
-    border-left: 10px solid #00695C;
-    border-right: 0px solid #009f9e;
+    border-left: 10px solid #FF6D00;
+    border-right: 0px solid #FF9100;
     border-bottom: 30px solid transparent;
     content: " ";
     z-index: 9;
@@ -146,7 +149,7 @@ $break-exlarge: 1140px;
   overflow: auto;
   display: block;
   margin-top: 13px;
-  border-left: #00695C solid 3px;
+  border-left: #FF6D00 solid 3px;
   
   ::before{
     position: absolute;
@@ -154,8 +157,8 @@ $break-exlarge: 1140px;
     left: 6px;
     display: inline-block;
     border-top: 30px solid transparent;
-    border-left: 0px solid #00695C;
-    border-right: 10px solid #009f9e;
+    border-left: 0px solid #FF6D00;
+    border-right: 10px solid #FF9100;
     border-bottom: 30px solid transparent;
     content: " ";
     z-index: 9;
@@ -177,11 +180,12 @@ table {
 
 .btn{
   color:#fff;
-  background: #009f9e;
+  background: #FF9100;
 }
 .btn :hover{
   color: #fff;
 }
+
 
 
 html, body { height: 100%; }
