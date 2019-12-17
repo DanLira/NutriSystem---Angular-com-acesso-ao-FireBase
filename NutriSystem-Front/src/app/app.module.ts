@@ -82,7 +82,7 @@ import { AgendaComponent } from './agenda/agenda.component';
     MatDialogModule
   ],
   providers: [MatDatepickerModule,
-    {provide: MAT_DATE_LOCALE, useValue: 'br-PT'},
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
     AuthGuard, AuthService
   ],
   entryComponents: [NutricionistaModalComponent],

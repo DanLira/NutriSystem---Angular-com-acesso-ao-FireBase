@@ -1,11 +1,11 @@
-import { Nutricionista } from './../model/nutricionista.model';
-import { Paciente } from './../model/paciente.model';
+import { Consultorio } from '../model/consultorio.model';
+import { Nutricionista } from '../model/nutricionista.model';
+import { Paciente } from '../model/paciente.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Consulta } from '../model/consulta.model';
-import { Consultorio } from '../model/consultorio.model';
 import { NutricionistaFireBaseService } from '../cadastro-nutricionista/nutricionista-fire-base.service';
 import { ConsultorioFireBaseService } from '../cadastro-consultorio/consultorio-fire-base.service';
 import { PacienteFireBaseService } from '../cadastro-paciente/paciente-fire-base.service';
@@ -191,13 +191,8 @@ export class MarcarConsultaComponent implements OnInit {
         });
       }
 
-
       getConsultorio() {
-        this.consultorioList.forEach(x => {
-          if (x.idNutricionista === localStorage.getItem('key') ) {
-             this.consultoriosNutricionista.push(x);
-          }
-      });
+        this.consultoriosNutricionista = this.consultorioList.filter(c => c.idNutricionista === localStorage.getItem('key'));
     }
 
     getRowTableConsulta(value: any): void {

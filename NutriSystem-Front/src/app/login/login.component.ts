@@ -16,9 +16,10 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
-    loginForm: FormGroup;
+  loginForm: FormGroup;
   returnUrl: string;
   nutricionistaList: Nutricionista[];
+  userInfo: Nutricionista[];
   dataSource = new MatTableDataSource<Nutricionista>();
   constructor(
     private fb: FormBuilder,
@@ -56,18 +57,13 @@ export class LoginComponent implements OnInit {
        localStorage.setItem('token', this.f.crn.value);
        localStorage.setItem('nome', user.nome);
        localStorage.setItem('key', user.key);
+       this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
        this.router.navigate([this.returnUrl]);
     } else {
       this.toastr.warning('Login ou Senha invalida!', '');
     }
-
-
   }
 }
-
-
-
-
 
   cadastrarNutricionista(): void {
      this.dialog.open(NutricionistaModalComponent, {
@@ -75,7 +71,5 @@ export class LoginComponent implements OnInit {
       width: '50%',
     });
   }
-
-
 
 }

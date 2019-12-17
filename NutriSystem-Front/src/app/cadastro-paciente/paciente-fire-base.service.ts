@@ -35,4 +35,5 @@ export class PacienteFireBaseService {
   deletePaciente(key: string) {
     return this.db.object(`paciente/${key}`).remove();
   }
+
 }

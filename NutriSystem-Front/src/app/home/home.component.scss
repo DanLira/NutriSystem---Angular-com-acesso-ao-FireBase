@@ -32,6 +32,8 @@
     border-radius: 4px;
     margin-bottom: 5px;
     max-width: 70px;
+    background: #FF5722 !important;
+    color: white;
   }
   
   .item-selected {
@@ -109,9 +111,7 @@
     overflow: hidden !important;
   }
   
-  .btn-nav:hover {
-    background: #FF9100;
-  }
+  
   
   .mat-toolbar {
     z-index: 11;
