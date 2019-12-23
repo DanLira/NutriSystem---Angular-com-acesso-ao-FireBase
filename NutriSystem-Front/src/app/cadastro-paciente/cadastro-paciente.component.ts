@@ -35,6 +35,9 @@ export class CadastroPacienteComponent implements OnInit {
     cpf: ['', Validators.required],
     sexo: ['', Validators.required],
     email: ['', Validators.required],
+    peso: ['', Validators.required],
+    altura: ['', Validators.required],
+    idade: ['', Validators.required],
     dataNascimento: ['', Validators.required],
     celular: ['', Validators.required],
     login: [''],
@@ -59,8 +62,11 @@ export class CadastroPacienteComponent implements OnInit {
         email: this.formsRegister.get('email').value,
         sexo: this.formsRegister.get('sexo').value,
         cpf: this.formsRegister.get('cpf').value,
+        peso: this.formsRegister.get('peso').value,
+        altura: this.formsRegister.get('altura').value,
         celular: this.formsRegister.get('celular').value,
         dataNascimento: (this.formsRegister.get('dataNascimento').value).toLocaleDateString('pt-BR'),
+        idade: this.formsRegister.get('idade').value,
         login: this.formsRegister.get('login').value,
         senha: this.formsRegister.get('senha').value,
       };
@@ -86,6 +92,7 @@ export class CadastroPacienteComponent implements OnInit {
       this.formsRegister.get('key').setValue(value.key);
       this.formsRegister.get('nome').setValue(value.nome);
       this.formsRegister.get('email').setValue(value.email);
+      this.formsRegister.get('idade').setValue(value.idade);
       this.formsRegister.get('sexo').setValue(value.sexo);
       this.formsRegister.get('cpf').setValue(value.cpf);
       this.formsRegister.get('dataNascimento').setValue(new Date (this.formatDate(value.dataNascimento)));

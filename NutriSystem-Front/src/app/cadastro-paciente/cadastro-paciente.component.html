@@ -7,7 +7,7 @@
             <mat-card-title>Cadastro de Paciente
             </mat-card-title>
             <form [formGroup]="formsRegister" class="row">
-              <mat-form-field class="col-5" appearance="outline">
+              <mat-form-field class="col-4" appearance="outline">
                   <mat-label>Nome</mat-label>
                 <input matInput placeholder="Nome" required formControlName="nome" value={{formsRegister.value.nome}} >
               </mat-form-field>
@@ -19,17 +19,30 @@
                       <mat-option value="F">Feminino</mat-option>
                     </mat-select>
                </mat-form-field>
+                <mat-form-field class="col-2" appearance="outline">
+                    <mat-label>Idade</mat-label>
+                  <input matInput type="number" placeholder="Idade" required formControlName="idade" value={{formsRegister.value.idade}} >
+                </mat-form-field>
+                  <mat-form-field class="col-2" appearance="outline">
+                    <mat-label>Peso</mat-label>
+                  <input matInput type="number" placeholder="Peso" required formControlName="peso" value={{formsRegister.value.peso}} >
+                </mat-form-field>
+                <mat-form-field class="col-2" appearance="outline">
+                  <mat-label>Altura</mat-label>
+                <input matInput type="number" placeholder="Altura" required formControlName="altura" value={{formsRegister.value.altura}} >
+              </mat-form-field>
+
                <mat-form-field class="col-4" appearance="outline">
                   <mat-label>Email</mat-label>
                   <input matInput placeholder="Email" required pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" 
                   formControlName="email" value={{formsRegister.value.email}} >
                 </mat-form-field>
-              <mat-form-field class="col-4" appearance="outline">
+              <mat-form-field class="col-3" appearance="outline">
                 <mat-label>CPF</mat-label>
                 <input matInput placeholder="CPF" required pattern="^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$" 
                 formControlName="cpf" value={{formsRegister.value.cpf}} >
               </mat-form-field>
-            <mat-form-field class="col-4" appearance="outline">
+            <mat-form-field class="col-3" appearance="outline">
               <input matInput readonly [matDatepicker]="picker" placeholder="Data de nascimento"
                formControlName="dataNascimento" value={{formsRegister.value.DataNascimento}}>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -39,12 +52,12 @@
             <mat-label>Celular</mat-label>
                 <input matInput placeholder="Celular" required formControlName="celular" value={{formsRegister.value.celular}} >
         </mat-form-field>
-        <mat-form-field class="col-xs-6 col-md-4" appearance="outline">
+        <mat-form-field class="col-4 col-md-4" appearance="outline">
           <mat-label>Login</mat-label>
           <input matInput placeholder="Login" required formControlName="login"
               value={{formsRegister.value.login}}>
       </mat-form-field>
-      <mat-form-field class="col-xs-6 col-md-4" appearance="outline">
+      <mat-form-field class="col-4 col-md-4" appearance="outline">
           <input matInput required placeholder="Senha" formControlName="senha" [type]="hide ? 'text' : 'password'">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
