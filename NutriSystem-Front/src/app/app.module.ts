@@ -33,7 +33,7 @@ import { HomeComponent } from './home/home.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './guards/auth.service';
 import { NutricionistaModalComponent } from './cadastro-nutricionista/nutricionista-modal/nutricionista-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
