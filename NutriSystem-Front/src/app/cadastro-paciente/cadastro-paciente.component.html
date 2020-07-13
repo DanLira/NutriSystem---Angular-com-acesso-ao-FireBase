@@ -40,7 +40,7 @@
               <mat-form-field class="col-3" appearance="outline">
                 <mat-label>CPF</mat-label>
                 <input matInput placeholder="CPF" required pattern="^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$" 
-                formControlName="cpf" value={{formsRegister.value.cpf}} >
+                formControlName="cpf" [textMask]="maskCpf" value={{formsRegister.value.cpf}} >
               </mat-form-field>
             <mat-form-field class="col-3" appearance="outline">
               <input matInput readonly [matDatepicker]="picker" placeholder="Data de nascimento"

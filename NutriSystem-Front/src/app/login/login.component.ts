@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   fazerLogin() {
   if (this.loginForm.invalid) {
-    return;
+    this.toastr.warning('Favor preencher os campos!', '');
  } else {
    const user = this.nutricionistaList.find(x => x.crn === this.f.crn.value
     && x.senha === this.f.senha.value );

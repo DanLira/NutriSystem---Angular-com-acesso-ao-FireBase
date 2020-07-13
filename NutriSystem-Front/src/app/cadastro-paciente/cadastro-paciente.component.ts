@@ -22,6 +22,12 @@ export class CadastroPacienteComponent implements OnInit {
   todoDataSource: any[];
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
+  public maskCpf = {
+    guide: true,
+    showMask: false,
+    mask: [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  };
+
   constructor(private readonly _formBuilder: FormBuilder,
               private readonly _pacienteService: PacienteService,
               private readonly _pacienteFireBaseService: PacienteFireBaseService,
@@ -79,7 +85,7 @@ export class CadastroPacienteComponent implements OnInit {
           if (this.pacienteList.filter(x => x.cpf.toUpperCase() === this.formsRegister.get('cpf').value.toUpperCase()).length > 0) {
             this.toastr.warning('Este CPF já existe!', '');
           } else {
-            this._pacienteFireBaseService.createPaciente(paciente);
+            this._pacienteService.savePaciente(paciente);
             this.formsRegister.reset();
             this.toastr.success('Paciente salvo com sucesso!', 'Salvar');
           }
