@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NutricionistaFireBaseService } from '../cadastro-nutricionista/nutricionista-fire-base.service';
 import { Nutricionista } from '../model/nutricionista.model';
-import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   nutricionistaList: Nutricionista[];
   userInfo: Nutricionista[];
-  dataSource = new MatTableDataSource<Nutricionista>();
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

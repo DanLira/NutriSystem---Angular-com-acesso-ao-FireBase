@@ -14,13 +14,15 @@
               <mat-icon class="sub-menu-icon">account_circle</mat-icon>
               <div class="sub-menu-title">Perfil</div>
             </div>
-            <div class="sub-menu-items-description item-color" routerLink="/perfilNutricionista" routerLinkActive="active">{{nome}}</div>
+            <div class="sub-menu-items-description item-color" routerLink="/perfilNutricionista"
+             routerLinkActive="active">{{nome}}</div>
             <div class="sub-menu">
               <mat-icon class="sub-menu-icon">contacts</mat-icon>
               <div class="sub-menu-title">Pacientes</div>
             </div>
             <div class="sub-menu-items">
-              <div class="sub-menu-items-description item-color" routerLink="/cadastroPaciente" routerLinkActive="active">
+              <div class="sub-menu-items-description item-color" routerLink="/cadastroPaciente" (click)="sidenav.toggle()"
+               routerLinkActive="active">
                 Novo Paciente</div>
             </div>
             <div class="sub-menu">
@@ -28,7 +30,8 @@
               <div class="sub-menu-title">Consulta</div>
             </div>
             <div class="sub-menu-items">
-              <div class="sub-menu-items-description item-color" routerLink="/novaConsulta" routerLinkActive="active">
+              <div class="sub-menu-items-description item-color" routerLink="/novaConsulta" (click)="sidenav.toggle()"
+              routerLinkActive="active">
                 Marcar Consulta</div>
             </div>
             <div class="sub-menu">
@@ -36,7 +39,7 @@
               <div class="sub-menu-title">Consultório</div>
             </div>
             <div class="sub-menu-items">
-              <div class="sub-menu-items-description item-color" routerLink="/cadastroConsultorio"
+              <div class="sub-menu-items-description item-color" routerLink="/cadastroConsultorio" (click)="sidenav.toggle()"
                 routerLinkActive="active">Novo Consultório</div>
             </div>
           </div>
@@ -46,7 +49,7 @@
             <div class="sub-menu-title">Agenda</div>
           </div>
           <div class="sub-menu-items">
-            <div class="sub-menu-items-description item-color" routerLink="/agenda"
+            <div class="sub-menu-items-description item-color" routerLink="/agenda" (click)="sidenav.toggle()"
               routerLinkActive="active">Criar Agenda</div>
           </div>
         </div>

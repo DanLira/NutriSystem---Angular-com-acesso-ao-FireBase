@@ -38,6 +38,7 @@ import { AuthService } from './guards/auth.service';
 import { NutricionistaModalComponent } from './cadastro-nutricionista/nutricionista-modal/nutricionista-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AgendaComponent } from './agenda/agenda.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { AgendaComponent } from './agenda/agenda.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule, // for database
     AngularFireAuthModule,
-    MatDialogModule
+    MatDialogModule,
+    TextMaskModule
   ],
   providers: [MatDatepickerModule,
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
