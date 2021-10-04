@@ -24,6 +24,7 @@ export class CadastroNutricionistaComponent implements OnInit {
   dataSource = new MatTableDataSource<Nutricionista>();
   todoDataSource: any[];
   nome: string;
+  hide: boolean;
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   router: Router;

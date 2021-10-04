@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   nutricionistaList: Nutricionista[];
   userInfo: Nutricionista[];
+  hide: boolean;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

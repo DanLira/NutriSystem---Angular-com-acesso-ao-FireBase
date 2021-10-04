@@ -20,6 +20,7 @@ export class CadastroPacienteComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'email', 'cpf', 'action'];
   dataSource = new MatTableDataSource<Paciente>();
   todoDataSource: any[];
+  hide: boolean;
   @ViewChild('MatPaginator') MatPaginator: MatPaginator;
 
   public maskCpf = {

@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class NutricionistaModalComponent implements OnInit {
 
   nutricionista: Nutricionista[];
-
+  hide: boolean;
   formsRegister: FormGroup;
   filterFormNutricionista: FormGroup;
   nutricionistaList: Nutricionista[];

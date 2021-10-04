@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   nome: string;
-
+  hiddenMenu: boolean;
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
